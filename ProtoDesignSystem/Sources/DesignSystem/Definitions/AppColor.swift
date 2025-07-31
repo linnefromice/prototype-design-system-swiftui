@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct Color {
+struct AppColor {
     
     struct Neutral {
         static let white = SwiftUI.Color(red: 1, green: 1, blue: 1)
