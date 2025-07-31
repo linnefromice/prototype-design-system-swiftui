@@ -5,17 +5,39 @@ struct DefaultButton: View {
     let action: () -> Void
     let typeVariant: ButtonTypeVariant
     let sizeVariant: ButtonSizeVariant
+    let isFocused: Bool
+
+    init(title: String, action: @escaping () -> Void, typeVariant: ButtonTypeVariant, sizeVariant: ButtonSizeVariant, isFocused: Bool = false) {
+        self.title = title
+        self.action = action
+        self.typeVariant = typeVariant
+        self.sizeVariant = sizeVariant
+        self.isFocused = isFocused
+    }
     
     var body: some View {
         Button(action: action) {
             Text(title)
                 .font(.system(size: 16, weight: .bold))
                 .foregroundColor(AppColor.Neutral.white)
+                .padding(.horizontal, sizeVariant.xPadding)
+                .padding(.vertical, sizeVariant.yPadding)
+                .background(typeVariant.backgroundColor)
+                .clipShape(RoundedRectangle(cornerRadius: Size.BorderRadius.val8))
+                .overlay(
+                    ZStack {
+                        // Outer Black Border
+                        RoundedRectangle(cornerRadius: Size.BorderRadius.val8)
+                            .stroke(isFocused ? AppColor.Neutral.black : Color.clear, lineWidth: 4)
+                        // Inner Yellow Border
+                        RoundedRectangle(cornerRadius: Size.BorderRadius.val8)
+                            .stroke(isFocused ? AppColor.Primitive.Yellow.yellow300 : Color.clear, lineWidth: 2)
+                            .padding(2)
+                    }
+                )
         }
-        .padding(.horizontal, sizeVariant.xPadding)
-        .padding(.vertical, sizeVariant.yPadding)
-        .background(typeVariant.backgroundColor)
-        .clipShape(RoundedRectangle(cornerRadius: Size.BorderRadius.val8))
+        .buttonStyle(PlainButtonStyle())
+        .padding(4)
     }
 }
 
@@ -29,14 +51,27 @@ struct DefaultButton: View {
                         .foregroundColor(.primary)
                     
                     ForEach(ButtonSizeVariant.allCases, id: \.self) { sizeVariant in
-                        HStack {
-                            DefaultButton(
-                                title: "Hello, World!",
-                                action: {},
-                                typeVariant: typeVariant,
-                                sizeVariant: sizeVariant
-                            )
-                            Spacer()
+                        VStack(spacing: 8) {
+                            HStack {
+                                DefaultButton(
+                                    title: "Hello, World!",
+                                    action: {},
+                                    typeVariant: typeVariant,
+                                    sizeVariant: sizeVariant,
+                                    isFocused: false
+                                )
+                                Spacer()
+                            }
+                            HStack {
+                                DefaultButton(
+                                    title: "Hello, World!",
+                                    action: {},
+                                    typeVariant: typeVariant,
+                                    sizeVariant: sizeVariant,
+                                    isFocused: true
+                                )
+                                Spacer()
+                            }
                         }
                     }
                 }
