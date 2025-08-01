@@ -19,6 +19,7 @@ struct DefaultButton: View {
         Button(action: action) {
             Text(title)
                 .font(.system(size: 16, weight: .bold))
+                .underline(typeVariant.withUnderline)
                 .foregroundColor(AppColor.Neutral.white)
                 .padding(.horizontal, sizeVariant.xPadding)
                 .padding(.vertical, sizeVariant.yPadding)

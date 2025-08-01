@@ -14,5 +14,14 @@ public enum ButtonTypeVariant: CaseIterable {
         case .disabled: return AppColor.Primitive.Blue.blue300
         }
     }
+
+    var withUnderline: Bool {
+        switch self {
+        case ._default: return false
+        case .hover: return true
+        case .active: return true
+        case .disabled: return false
+        }
+    }
 }
 
