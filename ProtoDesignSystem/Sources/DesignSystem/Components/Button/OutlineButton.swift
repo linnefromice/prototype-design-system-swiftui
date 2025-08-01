@@ -1,14 +1,32 @@
 import SwiftUI
 
-fileprivate struct SolidFillButtonStyle {
+fileprivate struct OutlineButtonStyle {
     let variant: ButtonTypeVariant
 
-    var backgroundColor: SwiftUI.Color {
+    var foregroundColor: SwiftUI.Color {
         switch self.variant {
         case ._default: return AppColor.Primitive.Blue.blue900
         case .hover: return AppColor.Primitive.Blue.blue1000
         case .active: return AppColor.Primitive.Blue.blue1200
-        case .disabled: return AppColor.Primitive.Blue.blue300
+        case .disabled: return AppColor.Neutral.SolidGray.solidGray300
+        }
+    }
+
+    var backgroundColor: SwiftUI.Color {
+        switch self.variant {
+        case ._default: return AppColor.Neutral.white
+        case .hover: return AppColor.Primitive.Blue.blue200
+        case .active: return AppColor.Primitive.Blue.blue300
+        case .disabled: return AppColor.Neutral.white
+        }
+    }
+
+    var borderColor: SwiftUI.Color {
+        switch self.variant {
+        case ._default: return AppColor.Primitive.Blue.blue900
+        case .hover: return AppColor.Primitive.Blue.blue1000
+        case .active: return AppColor.Primitive.Blue.blue1200
+        case .disabled: return AppColor.Neutral.SolidGray.solidGray300
         }
     }
 
@@ -22,33 +40,27 @@ fileprivate struct SolidFillButtonStyle {
     }
 }
 
-struct SolidFillButton: View {
+struct OutlineButton: View {
     let title: String
     let action: () -> Void
-    fileprivate let style: SolidFillButtonStyle
+    fileprivate let style: OutlineButtonStyle
     let sizeVariant: ButtonSizeVariant
     let isFocused: Bool
 
-    init(
-        title: String,
-        action: @escaping () -> Void,
-        typeVariant: ButtonTypeVariant,
-        sizeVariant: ButtonSizeVariant,
-        isFocused: Bool = false
-    ) {
+    init(title: String, action: @escaping () -> Void, typeVariant: ButtonTypeVariant, sizeVariant: ButtonSizeVariant, isFocused: Bool = false) {
         self.title = title
         self.action = action
-        self.style = SolidFillButtonStyle(variant: typeVariant)
+        self.style = OutlineButtonStyle(variant: typeVariant)
         self.sizeVariant = sizeVariant
         self.isFocused = isFocused
     }
-    
+
     var body: some View {
-        Button(action: action) {
+                Button(action: action) {
             Text(title)
                 .font(.system(size: 16, weight: .bold))
                 .underline(style.withUnderline)
-                .foregroundColor(AppColor.Neutral.white)
+                .foregroundColor(style.foregroundColor)
                 .padding(.horizontal, sizeVariant.xPadding)
                 .padding(.vertical, sizeVariant.yPadding)
                 .background(style.backgroundColor)
@@ -57,11 +69,16 @@ struct SolidFillButton: View {
                     ZStack {
                         // Outer Black Border
                         RoundedRectangle(cornerRadius: Size.BorderRadius.val8)
-                            .stroke(isFocused ? AppColor.Neutral.black : Color.clear, lineWidth: 4)
+                            .stroke(isFocused ? AppColor.Neutral.black : Color.clear, lineWidth: 6)
                         // Inner Yellow Border
                         RoundedRectangle(cornerRadius: Size.BorderRadius.val8)
-                            .stroke(isFocused ? AppColor.Primitive.Yellow.yellow300 : Color.clear, lineWidth: 2)
+                            .stroke(isFocused ? AppColor.Primitive.Yellow.yellow300 : Color.clear, lineWidth: 4)
                             .padding(2)
+                        // TODO
+                        // // Base Border
+                        // RoundedRectangle(cornerRadius: Size.BorderRadius.val8)
+                        //     .stroke(style.borderColor, lineWidth: 2)
+                        //     .padding(4)
                     }
                 )
         }
@@ -82,7 +99,7 @@ struct SolidFillButton: View {
                     ForEach(ButtonSizeVariant.allCases, id: \.self) { sizeVariant in
                         VStack(spacing: 8) {
                             HStack {
-                                SolidFillButton(
+                                OutlineButton(
                                     title: "Hello, World!",
                                     action: {},
                                     typeVariant: typeVariant,
@@ -92,7 +109,7 @@ struct SolidFillButton: View {
                                 Spacer()
                             }
                             HStack {
-                                SolidFillButton(
+                                OutlineButton(
                                     title: "Hello, World!",
                                     action: {},
                                     typeVariant: typeVariant,
