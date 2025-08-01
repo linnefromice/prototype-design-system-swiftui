@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct DefaultButton: View {
+struct SolidFillButton: View {
     let title: String
     let action: () -> Void
     let typeVariant: ButtonTypeVariant
@@ -54,7 +54,7 @@ struct DefaultButton: View {
                     ForEach(ButtonSizeVariant.allCases, id: \.self) { sizeVariant in
                         VStack(spacing: 8) {
                             HStack {
-                                DefaultButton(
+                                SolidFillButton(
                                     title: "Hello, World!",
                                     action: {},
                                     typeVariant: typeVariant,
@@ -64,7 +64,7 @@ struct DefaultButton: View {
                                 Spacer()
                             }
                             HStack {
-                                DefaultButton(
+                                SolidFillButton(
                                     title: "Hello, World!",
                                     action: {},
                                     typeVariant: typeVariant,
