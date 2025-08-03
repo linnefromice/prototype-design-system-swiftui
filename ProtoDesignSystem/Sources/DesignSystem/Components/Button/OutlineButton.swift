@@ -71,21 +71,21 @@ struct OutlineButton: View {
                 .clipShape(RoundedRectangle(cornerRadius: Size.BorderRadius.val8))
                 .overlay(
                     ZStack {
-                        // Outer Black Border
+                        // Base Border (always visible)
                         RoundedRectangle(cornerRadius: Size.BorderRadius.val8)
-                            .stroke(isFocused ? AppColor.Neutral.black : Color.clear, lineWidth: 6)
-                        // Inner Yellow Border
-                        RoundedRectangle(cornerRadius: Size.BorderRadius.val8)
-                            .stroke(
-                                isFocused ? AppColor.Primitive.Yellow.yellow300 : Color.clear,
-                                lineWidth: 4
-                            )
-                            .padding(2)
-                        // TODO
-                        // // Base Border
-                        // RoundedRectangle(cornerRadius: Size.BorderRadius.val8)
-                        //     .stroke(style.borderColor, lineWidth: 2)
-                        //     .padding(4)
+                            .stroke(style.borderColor, lineWidth: 2)
+
+                        // Focus borders (only when focused)
+                        if isFocused {
+                            // Outer Black Border
+                            RoundedRectangle(cornerRadius: Size.BorderRadius.val8)
+                                .stroke(AppColor.Neutral.black, lineWidth: 4)
+                                .padding(-2)
+                            // Inner Yellow Border
+                            RoundedRectangle(cornerRadius: Size.BorderRadius.val8)
+                                .stroke(AppColor.Primitive.Yellow.yellow300, lineWidth: 2)
+                                .padding(-1)
+                        }
                     }
                 )
         }
@@ -135,4 +135,5 @@ struct OutlineButton: View {
         }
         .padding()
     }
+    .preferredColorScheme(.light)
 }

@@ -114,4 +114,5 @@ struct SolidFillButton: View {
         }
         .padding()
     }
+    .preferredColorScheme(.light)
 }
