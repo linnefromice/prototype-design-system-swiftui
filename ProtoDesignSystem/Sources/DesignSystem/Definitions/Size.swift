@@ -1,7 +1,7 @@
 import CoreFoundation
 
 struct Size {
-    
+
     struct BorderRadius {
         static let val4: CGFloat = 4
         static let val6: CGFloat = 6
@@ -12,5 +12,5 @@ struct Size {
         static let val32: CGFloat = 32
         static let full: CGFloat = 9999
     }
-    
+
 }

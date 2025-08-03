@@ -5,14 +5,14 @@
 //  Created by arata.haruyama on 2025/07/21.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 @main
 struct ProtoDesignSystemApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            Item.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 

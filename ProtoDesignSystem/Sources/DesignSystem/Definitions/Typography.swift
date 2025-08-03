@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct Typography {
-    
+
     struct FontSize {
         static let size14: CGFloat = 14
         static let size16: CGFloat = 16
@@ -19,15 +19,15 @@ struct Typography {
         static let size57: CGFloat = 57
         static let size64: CGFloat = 64
     }
-    
+
     struct FontWeight {
         static let regular: SwiftUI.Font.Weight = .regular
         static let bold: SwiftUI.Font.Weight = .bold
     }
-    
+
     struct FontFamily {
         static let sans: String = "Noto Sans JP"
         static let mono: String = "Noto Sans Mono"
     }
-    
+
 }

@@ -5,8 +5,8 @@
 //  Created by arata.haruyama on 2025/07/21.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
@@ -17,9 +17,13 @@ struct ContentView: View {
             List {
                 ForEach(items) { item in
                     NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
+                        Text(
+                            "Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))"
+                        )
                     } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+                        Text(
+                            item.timestamp,
+                            format: Date.FormatStyle(date: .numeric, time: .standard))
                     }
                 }
                 .onDelete(perform: deleteItems)

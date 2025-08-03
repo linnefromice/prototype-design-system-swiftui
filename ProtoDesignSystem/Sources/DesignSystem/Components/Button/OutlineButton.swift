@@ -1,6 +1,6 @@
 import SwiftUI
 
-fileprivate struct OutlineButtonStyle {
+private struct OutlineButtonStyle {
     let variant: ButtonTypeVariant
 
     var foregroundColor: SwiftUI.Color {
@@ -47,7 +47,11 @@ struct OutlineButton: View {
     let sizeVariant: ButtonSizeVariant
     let isFocused: Bool
 
-    init(title: String, action: @escaping () -> Void, typeVariant: ButtonTypeVariant, sizeVariant: ButtonSizeVariant, isFocused: Bool = false) {
+    init(
+        title: String, action: @escaping () -> Void, typeVariant: ButtonTypeVariant,
+        sizeVariant: ButtonSizeVariant,
+        isFocused: Bool = false
+    ) {
         self.title = title
         self.action = action
         self.style = OutlineButtonStyle(variant: typeVariant)
@@ -56,7 +60,7 @@ struct OutlineButton: View {
     }
 
     var body: some View {
-                Button(action: action) {
+        Button(action: action) {
             Text(title)
                 .font(.system(size: 16, weight: .bold))
                 .underline(style.withUnderline)
@@ -72,7 +76,10 @@ struct OutlineButton: View {
                             .stroke(isFocused ? AppColor.Neutral.black : Color.clear, lineWidth: 6)
                         // Inner Yellow Border
                         RoundedRectangle(cornerRadius: Size.BorderRadius.val8)
-                            .stroke(isFocused ? AppColor.Primitive.Yellow.yellow300 : Color.clear, lineWidth: 4)
+                            .stroke(
+                                isFocused ? AppColor.Primitive.Yellow.yellow300 : Color.clear,
+                                lineWidth: 4
+                            )
                             .padding(2)
                         // TODO
                         // // Base Border
@@ -95,7 +102,7 @@ struct OutlineButton: View {
                     Text(String(describing: typeVariant))
                         .font(.headline)
                         .foregroundColor(.primary)
-                    
+
                     ForEach(ButtonSizeVariant.allCases, id: \.self) { sizeVariant in
                         VStack(spacing: 8) {
                             HStack {

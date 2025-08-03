@@ -1,6 +1,6 @@
 import SwiftUI
 
-fileprivate struct SolidFillButtonStyle {
+private struct SolidFillButtonStyle {
     let variant: ButtonTypeVariant
 
     var backgroundColor: SwiftUI.Color {
@@ -42,7 +42,7 @@ struct SolidFillButton: View {
         self.sizeVariant = sizeVariant
         self.isFocused = isFocused
     }
-    
+
     var body: some View {
         Button(action: action) {
             Text(title)
@@ -60,7 +60,10 @@ struct SolidFillButton: View {
                             .stroke(isFocused ? AppColor.Neutral.black : Color.clear, lineWidth: 4)
                         // Inner Yellow Border
                         RoundedRectangle(cornerRadius: Size.BorderRadius.val8)
-                            .stroke(isFocused ? AppColor.Primitive.Yellow.yellow300 : Color.clear, lineWidth: 2)
+                            .stroke(
+                                isFocused ? AppColor.Primitive.Yellow.yellow300 : Color.clear,
+                                lineWidth: 2
+                            )
                             .padding(2)
                     }
                 )
@@ -78,7 +81,7 @@ struct SolidFillButton: View {
                     Text(String(describing: typeVariant))
                         .font(.headline)
                         .foregroundColor(.primary)
-                    
+
                     ForEach(ButtonSizeVariant.allCases, id: \.self) { sizeVariant in
                         VStack(spacing: 8) {
                             HStack {

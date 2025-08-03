@@ -1,11 +1,11 @@
 import SwiftUI
 
 struct AppColor {
-    
+
     struct Neutral {
         static let white = SwiftUI.Color(red: 1, green: 1, blue: 1)
         static let black = SwiftUI.Color(red: 0, green: 0, blue: 0)
-        
+
         struct SolidGray {
             static let solidGray50 = SwiftUI.Color(red: 0.976, green: 0.976, blue: 0.976)
             static let solidGray100 = SwiftUI.Color(red: 0.945, green: 0.945, blue: 0.949)
@@ -20,7 +20,7 @@ struct AppColor {
             static let solidGray800 = SwiftUI.Color(red: 0.122, green: 0.125, blue: 0.133)
             static let solidGray900 = SwiftUI.Color(red: 0.071, green: 0.071, blue: 0.075)
         }
-        
+
         struct OpacityGray {
             static let opacityGray50 = SwiftUI.Color(red: 0, green: 0, blue: 0, opacity: 0.02)
             static let opacityGray100 = SwiftUI.Color(red: 0, green: 0, blue: 0, opacity: 0.04)
@@ -36,7 +36,7 @@ struct AppColor {
             static let opacityGray900 = SwiftUI.Color(red: 0, green: 0, blue: 0, opacity: 0.92)
         }
     }
-    
+
     struct Primitive {
         struct Blue {
             static let blue50 = SwiftUI.Color(red: 0.910, green: 0.945, blue: 0.996)
@@ -53,7 +53,7 @@ struct AppColor {
             static let blue1100 = SwiftUI.Color(red: 0, green: 0, blue: 0.443)
             static let blue1200 = SwiftUI.Color(red: 0, green: 0, blue: 0.376)
         }
-        
+
         struct LightBlue {
             static let lightBlue50 = SwiftUI.Color(red: 0.941, green: 0.976, blue: 1)
             static let lightBlue100 = SwiftUI.Color(red: 0.863, green: 0.941, blue: 1)
@@ -69,7 +69,7 @@ struct AppColor {
             static let lightBlue1100 = SwiftUI.Color(red: 0, green: 0.192, blue: 0.416)
             static let lightBlue1200 = SwiftUI.Color(red: 0, green: 0.137, blue: 0.294)
         }
-        
+
         struct Cyan {
             static let cyan50 = SwiftUI.Color(red: 0.914, green: 0.969, blue: 0.976)
             static let cyan100 = SwiftUI.Color(red: 0.784, green: 0.973, blue: 1)
@@ -85,7 +85,7 @@ struct AppColor {
             static let cyan1100 = SwiftUI.Color(red: 0, green: 0.275, blue: 0.325)
             static let cyan1200 = SwiftUI.Color(red: 0, green: 0.180, blue: 0.212)
         }
-        
+
         struct Green {
             static let green50 = SwiftUI.Color(red: 0.925, green: 0.976, blue: 0.918)
             static let green100 = SwiftUI.Color(red: 0.859, green: 0.984, blue: 0.843)
@@ -101,7 +101,7 @@ struct AppColor {
             static let green1100 = SwiftUI.Color(red: 0.039, green: 0.141, blue: 0.020)
             static let green1200 = SwiftUI.Color(red: 0.031, green: 0.110, blue: 0.016)
         }
-        
+
         struct Lime {
             static let lime50 = SwiftUI.Color(red: 0.961, green: 0.973, blue: 0.890)
             static let lime100 = SwiftUI.Color(red: 0.945, green: 0.969, blue: 0.765)
@@ -117,7 +117,7 @@ struct AppColor {
             static let lime1100 = SwiftUI.Color(red: 0.192, green: 0.227, blue: 0)
             static let lime1200 = SwiftUI.Color(red: 0.145, green: 0.173, blue: 0)
         }
-        
+
         struct Yellow {
             static let yellow50 = SwiftUI.Color(red: 0.996, green: 0.969, blue: 0.867)
             static let yellow100 = SwiftUI.Color(red: 1, green: 0.945, blue: 0.761)
@@ -133,7 +133,7 @@ struct AppColor {
             static let yellow1100 = SwiftUI.Color(red: 0.243, green: 0.188, blue: 0)
             static let yellow1200 = SwiftUI.Color(red: 0.184, green: 0.141, blue: 0)
         }
-        
+
         struct Orange {
             static let orange50 = SwiftUI.Color(red: 1, green: 0.957, blue: 0.906)
             static let orange100 = SwiftUI.Color(red: 1, green: 0.918, blue: 0.808)
@@ -149,7 +149,7 @@ struct AppColor {
             static let orange1100 = SwiftUI.Color(red: 0.271, green: 0.161, blue: 0.004)
             static let orange1200 = SwiftUI.Color(red: 0.204, green: 0.118, blue: 0)
         }
-        
+
         struct Red {
             static let red50 = SwiftUI.Color(red: 1, green: 0.914, blue: 0.914)
             static let red100 = SwiftUI.Color(red: 1, green: 0.831, blue: 0.831)
@@ -165,7 +165,7 @@ struct AppColor {
             static let red1100 = SwiftUI.Color(red: 0.286, green: 0, blue: 0)
             static let red1200 = SwiftUI.Color(red: 0.220, green: 0.004, blue: 0.004)
         }
-        
+
         struct Magenta {
             static let magenta50 = SwiftUI.Color(red: 0.992, green: 0.918, blue: 0.976)
             static let magenta100 = SwiftUI.Color(red: 0.984, green: 0.839, blue: 0.957)
@@ -181,7 +181,7 @@ struct AppColor {
             static let magenta1100 = SwiftUI.Color(red: 0.243, green: 0, blue: 0.192)
             static let magenta1200 = SwiftUI.Color(red: 0.188, green: 0, blue: 0.149)
         }
-        
+
         struct Purple {
             static let purple50 = SwiftUI.Color(red: 0.957, green: 0.929, blue: 1)
             static let purple100 = SwiftUI.Color(red: 0.918, green: 0.867, blue: 1)
@@ -198,24 +198,24 @@ struct AppColor {
             static let purple1200 = SwiftUI.Color(red: 0.137, green: 0, blue: 0.318)
         }
     }
-    
+
     struct Semantic {
         struct Error {
             static let error1 = SwiftUI.Color(red: 0.980, green: 0.192, blue: 0.192)
             static let error2 = SwiftUI.Color(red: 0.890, green: 0.110, blue: 0.110)
         }
-        
+
         struct Success {
             static let success1 = SwiftUI.Color(red: 0.235, green: 0.820, blue: 0.145)
             static let success2 = SwiftUI.Color(red: 0.227, green: 0.725, blue: 0.145)
         }
-        
+
         struct Warning {
             struct Orange {
                 static let orange1 = SwiftUI.Color(red: 1, green: 0.616, blue: 0.047)
                 static let orange2 = SwiftUI.Color(red: 0.925, green: 0.537, blue: 0)
             }
-            
+
             struct Yellow {
                 static let yellow1 = SwiftUI.Color(red: 0.961, green: 0.737, blue: 0)
                 static let yellow2 = SwiftUI.Color(red: 0.847, green: 0.651, blue: 0)

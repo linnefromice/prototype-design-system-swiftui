@@ -6,4 +6,3 @@ public enum ButtonTypeVariant: CaseIterable {
     case active
     case disabled
 }
-
