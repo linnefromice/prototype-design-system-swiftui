@@ -25,6 +25,15 @@ private struct TextButtonStyle {
         case .disabled: return .clear
         }
     }
+
+    var underlineHeight: CGFloat {
+        switch variant {
+        case ._default: return 1
+        case .hover: return 2
+        case .active: return 2
+        case .disabled: return 1
+        }
+    }
 }
 
 struct TextButton: View {
@@ -50,22 +59,33 @@ struct TextButton: View {
 
     var body: some View {
         Button(action: action) {
-            Text(title)
-                .font(.system(size: 16, weight: .bold))
-                .underline(pattern: .solid, color: style.foregroundColor)
-                .foregroundColor(style.foregroundColor)
-                .padding(.horizontal, sizeVariant.xPadding)
-                .padding(.vertical, sizeVariant.yPadding)
-                .background(style.backgroundColor)
-                .clipShape(RoundedRectangle(cornerRadius: Size.BorderRadius.val8))
-                .overlay(
-                    Group {
-                        if isFocused {
-                            RoundedRectangle(cornerRadius: Size.BorderRadius.val8)
-                                .stroke(AppColor.Neutral.black, lineWidth: 4)
+            Group {
+                Text(title)
+                    .font(.system(size: 16, weight: .bold))
+                    // .underline(pattern: .solid, color: style.foregroundColor)
+                    .foregroundColor(style.foregroundColor)
+                    .background(
+                        GeometryReader { geometry in
+                            Rectangle()
+                                .fill(style.foregroundColor)
+                                .frame(width: geometry.size.width, height: style.underlineHeight)
+                                .offset(y: geometry.size.height)
                         }
+                    )
+            }
+            .padding(.horizontal, sizeVariant.xPadding)
+            .padding(.vertical, sizeVariant.yPadding)
+            .background(style.backgroundColor)
+            .clipShape(RoundedRectangle(cornerRadius: Size.BorderRadius.val8))
+            .overlay(
+                Group {
+                    if isFocused {
+                        RoundedRectangle(cornerRadius: Size.BorderRadius.val8)
+                            .stroke(AppColor.Neutral.black, lineWidth: 4)
                     }
-                )
+                }
+            )
+
         }
         .buttonStyle(PlainButtonStyle())
         .padding(isFocused ? 4 : 0)
