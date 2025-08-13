@@ -1,30 +1,44 @@
 import SwiftUI
 
 public struct CheckboxStyle: ToggleStyle {
+    let isHover: Bool
+
+    init(isHover: Bool = false) {
+        self.isHover = isHover
+    }
+
     public func makeBody(configuration: Configuration) -> some View {
         HStack {
             Button {
                 configuration.isOn.toggle()
             } label: {
                 ZStack {
-                    RoundedRectangle(cornerRadius: 4)
-                        .fill(
-                            configuration.isOn
-                                ? AppColor.Primitive.Blue.blue600 : AppColor.Neutral.white
-                        )
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 4)
-                                .stroke(AppColor.Neutral.SolidGray.solidGray400, lineWidth: 1)
-                        )
-
-                    if configuration.isOn {
-                        Image(systemName: "checkmark")
-                            .resizable()
-                            .frame(width: 8, height: 8)
-                            .foregroundColor(AppColor.Neutral.white)
+                    if isHover {
+                        RoundedRectangle(cornerRadius: 4)
+                            .stroke(AppColor.Neutral.black, lineWidth: 6)
+                            .frame(width: 24, height: 24)
                     }
+                    
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 4)
+                            .fill(
+                                configuration.isOn
+                                    ? AppColor.Primitive.Blue.blue600 : AppColor.Neutral.white
+                            )
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 4)
+                                    .stroke(AppColor.Neutral.SolidGray.solidGray400, lineWidth: 1)
+                            )
+
+                        if configuration.isOn {
+                            Image(systemName: "checkmark")
+                                .resizable()
+                                .frame(width: 8, height: 8)
+                                .foregroundColor(AppColor.Neutral.white)
+                        }
+                    }
+                    .frame(width: 20, height: 20)
                 }
-                .frame(width: 20, height: 20)
             }
             .buttonStyle(.plain)
         }
@@ -56,6 +70,18 @@ extension ToggleStyle where Self == CheckboxStyle {
         HStack {
             Toggle("Checkbox", isOn: .constant(true))
                 .toggleStyle(.customCheckbox)
+            Text("True")
+        }
+
+        HStack {
+            Toggle("Checkbox", isOn: .constant(false))
+                .toggleStyle(CheckboxStyle(isHover: true))
+            Text("False")
+        }
+
+        HStack {
+            Toggle("Checkbox", isOn: .constant(true))
+                .toggleStyle(CheckboxStyle(isHover: true))
             Text("True")
         }
     }
