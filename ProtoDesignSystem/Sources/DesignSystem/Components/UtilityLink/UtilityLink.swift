@@ -3,6 +3,17 @@ import SwiftUI
 struct UtilityLink: View {
     let title: String
     let action: () -> Void
+    let isHover: Bool
+
+    init(
+        title: String,
+        action: @escaping () -> Void,
+        isHover: Bool = false
+    ) {
+        self.title = title
+        self.action = action
+        self.isHover = isHover
+    }
 
     var body: some View {
         Button(action: action) {
@@ -13,8 +24,15 @@ struct UtilityLink: View {
 
                 Text(title)
                     .font(.system(size: 16, weight: .bold))
-                    .underline(true, pattern: .solid)
                     .foregroundColor(AppColor.Neutral.SolidGray.solidGray800)
+                    .background(
+                        GeometryReader { geometry in
+                            Rectangle()
+                                .fill(AppColor.Neutral.SolidGray.solidGray800)
+                                .frame(width: geometry.size.width, height: isHover ? 2 : 1)
+                                .offset(y: geometry.size.height)
+                        }
+                    )
 
                 Image(systemName: "rectangle.dashed.and.paperclip")
                     .foregroundColor(AppColor.Neutral.SolidGray.solidGray900)
@@ -25,5 +43,8 @@ struct UtilityLink: View {
 }
 
 #Preview {
-    UtilityLink(title: "Preview", action: {})
+    VStack(spacing: 16) {
+        UtilityLink(title: "Preview", action: {})
+        UtilityLink(title: "is hover", action: {}, isHover: true)
+    }
 }
