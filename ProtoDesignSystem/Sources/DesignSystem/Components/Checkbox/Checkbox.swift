@@ -1,5 +1,24 @@
 import SwiftUI
 
+public enum CheckboxTypeVariant {
+    case _default
+    case indeterminate
+
+    func image(baseSize: Int) -> AnyView {
+        switch self {
+        case ._default:
+            return AnyView(
+                Image(systemName: "checkmark")
+                    .resizable()
+                    .frame(
+                        width: CGFloat(baseSize - 16),
+                        height: CGFloat(baseSize - 16)
+                    ))
+        case .indeterminate: return AnyView(Image(systemName: "minus"))
+        }
+    }
+}
+
 public enum CheckboxSizeVariant: Identifiable, Hashable {
     case sm
     case md
@@ -27,10 +46,16 @@ public enum CheckboxSizeVariant: Identifiable, Hashable {
 }
 
 public struct CheckboxStyle: ToggleStyle {
+    let typeVariant: CheckboxTypeVariant
     let sizeVariant: CheckboxSizeVariant
     let isHover: Bool
 
-    init(sizeVariant: CheckboxSizeVariant = .md, isHover: Bool = false) {
+    init(
+        typeVariant: CheckboxTypeVariant = ._default,
+        sizeVariant: CheckboxSizeVariant = .md,
+        isHover: Bool = false
+    ) {
+        self.typeVariant = typeVariant
         self.sizeVariant = sizeVariant
         self.isHover = isHover
     }
@@ -60,12 +85,7 @@ public struct CheckboxStyle: ToggleStyle {
                             )
 
                         if configuration.isOn {
-                            Image(systemName: "checkmark")
-                                .resizable()
-                                .frame(
-                                    width: CGFloat(sizeVariant.size - 16),
-                                    height: CGFloat(sizeVariant.size - 16)
-                                )
+                            typeVariant.image(baseSize: sizeVariant.size)
                                 .foregroundColor(AppColor.Neutral.white)
                         }
                     }
@@ -103,6 +123,25 @@ extension ToggleStyle where Self == CheckboxStyle {
             ForEach(sizeVariants, id: \.self) { sizeVariant in
                 Toggle("", isOn: $isOn)
                     .toggleStyle(CheckboxStyle(sizeVariant: sizeVariant, isHover: true))
+            }
+        }
+
+        // Indeterminate state row
+        HStack(spacing: 48) {
+            ForEach(sizeVariants, id: \.self) { sizeVariant in
+                Toggle("", isOn: $isOn)
+                    .toggleStyle(
+                        CheckboxStyle(typeVariant: .indeterminate, sizeVariant: sizeVariant))
+            }
+        }
+
+        // Indeterminate + Hovered state row
+        HStack(spacing: 48) {
+            ForEach(sizeVariants, id: \.self) { sizeVariant in
+                Toggle("", isOn: $isOn)
+                    .toggleStyle(
+                        CheckboxStyle(
+                            typeVariant: .indeterminate, sizeVariant: sizeVariant, isHover: true))
             }
         }
     }
