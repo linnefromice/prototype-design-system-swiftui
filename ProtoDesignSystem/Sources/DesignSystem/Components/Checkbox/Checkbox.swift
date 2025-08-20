@@ -3,6 +3,7 @@ import SwiftUI
 public enum CheckboxTypeVariant {
     case _default
     case error
+    case disabled
 
     func contentsBgColor(isOn: Bool, isHover: Bool) -> Color {
         switch self {
@@ -14,6 +15,18 @@ public enum CheckboxTypeVariant {
             return isOn
                 ? isHover ? AppColor.Primitive.Red.red1000 : AppColor.Semantic.Error.error1
                 : AppColor.Neutral.white
+        case .disabled:
+            return isOn
+                ? AppColor.Neutral.SolidGray.solidGray300
+                : AppColor.Neutral.SolidGray.solidGray50
+        }
+    }
+
+    var borderColor: Color {
+        switch self {
+        case ._default: return AppColor.Neutral.SolidGray.solidGray400
+        case .error: return AppColor.Semantic.Error.error1
+        case .disabled: return AppColor.Neutral.SolidGray.solidGray300
         }
     }
 
@@ -113,7 +126,7 @@ public struct CheckboxStyle: ToggleStyle {
                             )
                             .overlay(
                                 RoundedRectangle(cornerRadius: 4)
-                                    .stroke(AppColor.Neutral.SolidGray.solidGray400, lineWidth: 1)
+                                    .stroke(typeVariant.borderColor, lineWidth: 1)
                             )
 
                         if configuration.isOn {
@@ -236,6 +249,25 @@ extension ToggleStyle where Self == CheckboxStyle {
                     .toggleStyle(
                         CheckboxStyle(
                             typeVariant: .error, markVariant: .indeterminate,
+                            sizeVariant: sizeVariant))
+            }
+        }
+
+        // Disabled state row
+        HStack(spacing: 48) {
+            ForEach(sizeVariants, id: \.self) { sizeVariant in
+                Toggle("", isOn: $isOn)
+                    .toggleStyle(CheckboxStyle(typeVariant: .disabled, sizeVariant: sizeVariant))
+            }
+        }
+
+        // Disabled + Indeterminate state row
+        HStack(spacing: 48) {
+            ForEach(sizeVariants, id: \.self) { sizeVariant in
+                Toggle("", isOn: $isOn)
+                    .toggleStyle(
+                        CheckboxStyle(
+                            typeVariant: .disabled, markVariant: .indeterminate,
                             sizeVariant: sizeVariant))
             }
         }
