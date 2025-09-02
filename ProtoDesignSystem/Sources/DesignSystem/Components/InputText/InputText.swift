@@ -1,36 +1,23 @@
 import SwiftUI
 
-public struct InputTextStyle {
-    let isFocused: Bool
-
-    init(isFocused: Bool) {
-        self.isFocused = isFocused
-    }
-
-    var innerBorderColor: SwiftUI.Color {
-        if isFocused {
-            return AppColor.Primitive.Yellow.yellow300
-        }
-        return AppColor.Neutral.SolidGray.solidGray600
-    }
-
-    var outerBorderColor: SwiftUI.Color? {
-        if isFocused {
-            return AppColor.Neutral.black
-        }
-        return nil
-    }
-}
-
 public struct InputText: View {
     @Binding var value: String
     let placeholder: String?
-    let style: InputTextStyle
+    let isFocused: Bool
+    let error: String?
 
-    public init(_ value: Binding<String>, placeholder: String? = nil, isFocused: Bool = false) {
+    public init(
+        _ value: Binding<String>, placeholder: String? = nil, isFocused: Bool = false,
+        error: String? = nil
+    ) {
         self._value = value
         self.placeholder = placeholder
-        self.style = InputTextStyle(isFocused: isFocused)
+        self.isFocused = isFocused
+        self.error = error
+    }
+
+    var hasError: Bool {
+        error != nil
     }
 
     public var body: some View {
@@ -43,11 +30,18 @@ public struct InputText: View {
             .background(
                 ZStack {
                     RoundedRectangle(cornerRadius: 8)
-                        .strokeBorder(style.innerBorderColor, lineWidth: 1)
-                    if let outerBorderColor = style.outerBorderColor {
+                        .stroke(
+                            hasError
+                                ? AppColor.Semantic.Error.error1
+                                : AppColor.Neutral.SolidGray.solidGray600, lineWidth: 1)
+
+                    if isFocused {
                         RoundedRectangle(cornerRadius: 8)
-                            .stroke(outerBorderColor, lineWidth: 2)
+                            .stroke(AppColor.Primitive.Yellow.yellow300, lineWidth: 2)
                             .padding(-1)
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(AppColor.Neutral.black, lineWidth: 2)
+                            .padding(-2)
                     }
                 }
             )
@@ -67,6 +61,20 @@ public struct InputText: View {
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
             ),
             isFocused: true
+        )
+        .padding()
+
+        InputText(
+            .constant("Sample Text"),
+            isFocused: false,
+            error: "Error"
+        )
+        .padding()
+
+        InputText(
+            .constant("Sample Text"),
+            isFocused: true,
+            error: "Error"
         )
         .padding()
     }
