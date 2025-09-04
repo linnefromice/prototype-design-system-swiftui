@@ -4,15 +4,18 @@ public struct InputText: View {
     @Binding var value: String
     let placeholder: String?
     let isFocused: Bool
+    let isDisabled: Bool
     let error: String?
 
     public init(
         _ value: Binding<String>, placeholder: String? = nil, isFocused: Bool = false,
+        isDisabled: Bool = false,
         error: String? = nil
     ) {
         self._value = value
         self.placeholder = placeholder
         self.isFocused = isFocused
+        self.isDisabled = isDisabled
         self.error = error
     }
 
@@ -21,30 +24,50 @@ public struct InputText: View {
     }
 
     public var body: some View {
-        TextField(placeholder.map { $0 } ?? "", text: $value)
-            // .textFieldStyle(PlainTextFieldStyle())
-            .foregroundColor(AppColor.Neutral.SolidGray.solidGray900)
-            .padding(.vertical, 12)
-            .padding(.horizontal, 16)
-            // .border(AppColor.Neutral.SolidGray.solidGray600, width: 1)
-            .background(
-                ZStack {
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(
-                            hasError
-                                ? AppColor.Semantic.Error.error1
-                                : AppColor.Neutral.SolidGray.solidGray600, lineWidth: 1)
+        VStack(alignment: .leading, spacing: 0) {
+            TextField(placeholder.map { $0 } ?? "", text: $value)
+                .disabled(isDisabled)
+                .foregroundColor(
+                    isDisabled
+                        ? AppColor.Neutral.SolidGray.solidGray420
+                        : AppColor.Neutral.SolidGray.solidGray900
+                )
+                .padding(.vertical, 12)
+                .padding(.horizontal, 16)
+                .background(
+                    ZStack {
+                        if isDisabled {
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(AppColor.Neutral.SolidGray.solidGray50)
+                        }
 
-                    if isFocused {
                         RoundedRectangle(cornerRadius: 8)
-                            .stroke(AppColor.Primitive.Yellow.yellow300, lineWidth: 2)
-                            .padding(-1)
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(AppColor.Neutral.black, lineWidth: 2)
-                            .padding(-2)
+                            .stroke(
+                                hasError
+                                    ? AppColor.Semantic.Error.error1
+                                    : isDisabled
+                                        ? AppColor.Neutral.SolidGray.solidGray300
+                                        : AppColor.Neutral.SolidGray.solidGray600,
+                                lineWidth: 1)
+
+                        if isFocused {
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(AppColor.Primitive.Yellow.yellow300, lineWidth: 2)
+                                .padding(-1)
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(AppColor.Neutral.black, lineWidth: 2)
+                                .padding(-2)
+                        }
                     }
-                }
-            )
+                )
+
+            if let errorMessage = error {
+                Spacer().frame(height: 8)
+                Text("* \(errorMessage)")
+                    .font(.system(size: 16))
+                    .foregroundColor(AppColor.Semantic.Error.error1)
+            }
+        }
     }
 }
 
@@ -75,6 +98,19 @@ public struct InputText: View {
             .constant("Sample Text"),
             isFocused: true,
             error: "Error"
+        )
+        .padding()
+
+        InputText(
+            .constant("Sample Text"),
+            isDisabled: true
+        )
+        .padding()
+
+        InputText(
+            .constant("Sample Text"),
+            isFocused: true,
+            isDisabled: true
         )
         .padding()
     }
