@@ -40,6 +40,12 @@ public struct SelectBox: View {
                 // Action for Option 3
             }
         }
+        .padding(.vertical, 12)
+        .padding(.horizontal, 16)
+        .background(
+            RoundedRectangle(cornerRadius: 8)
+                .strokeBorder(Color.gray, lineWidth: 1)
+        )
 
         Picker("Select an Option", selection: $selectedOption) {
             Text("Option A").tag("Option A")
