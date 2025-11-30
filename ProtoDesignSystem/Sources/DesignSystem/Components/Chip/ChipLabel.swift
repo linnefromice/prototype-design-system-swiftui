@@ -180,10 +180,10 @@ public struct ChipLabel: View {
     }
 
     public var body: some View {
-        HStack(spacing: 4) {
-            // DADS標準アイコン（斜線パターン）の代わりにSF Symbolsの類似アイコンを使用
-            Image(systemName: "number")
-                .font(.system(size: 12, weight: .bold))
+        HStack(spacing: 3) {
+            // DADS標準アイコン（斜線パターン）をテキストで表現
+            Text("//")
+                .font(.system(size: 10, weight: .bold))
                 .foregroundColor(configuration.iconColor)
                 .accessibilityHidden(true)
 
