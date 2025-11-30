@@ -141,7 +141,14 @@ Example preview pattern:
 4. Follow variant pattern for states (default, hover, active, disabled)
 5. Include comprehensive preview with all states
 6. Add accessibility support (labels, values, hints)
-7. Update `COMPONENT_STATUS.md` status and update history
+7. **Update `COMPONENT_STATUS.md`** when implementation is complete:
+   - Change status from 🔴 (Not Started) or 🟡 (In Progress) to 🟢 (Completed)
+   - Add file path in the "パス" column (e.g., `ProtoDesignSystem/Sources/DesignSystem/Components/ComponentName`)
+   - Add entry to "更新履歴" (Update History) section at the top:
+     ```
+     - YYYY-MM-DD: ComponentName実装完了（key features）
+     ```
+   - Example entry: `- 2025-11-30: SelectBoxをリファクタリング（ジェネリック型サポート、エラー状態、アクセシビリティ対応を追加）`
 
 ## Design Guidelines
 
