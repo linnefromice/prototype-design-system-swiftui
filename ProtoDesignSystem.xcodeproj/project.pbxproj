@@ -133,6 +133,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				C1BDCF502EDDD50900AABDE5 /* PBXTargetDependency */,
 				C19542922E2E4BE800CB1783 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
@@ -274,6 +275,10 @@
 			isa = PBXTargetDependency;
 			target = C195427D2E2E4BE700CB1783 /* ProtoDesignSystem */;
 			targetProxy = C195429B2E2E4BE800CB1783 /* PBXContainerItemProxy */;
+		};
+		C1BDCF502EDDD50900AABDE5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = C1BDCF4F2EDDD50900AABDE5 /* PrefireTestsPlugin */;
 		};
 /* End PBXTargetDependency section */
 
@@ -580,6 +585,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C1BDCD8C2EDDCF0500AABDE5 /* XCRemoteSwiftPackageReference "Prefire" */;
 			productName = Prefire;
+		};
+		C1BDCF4F2EDDD50900AABDE5 /* PrefireTestsPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1BDCD8C2EDDCF0500AABDE5 /* XCRemoteSwiftPackageReference "Prefire" */;
+			productName = "plugin:PrefireTestsPlugin";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
