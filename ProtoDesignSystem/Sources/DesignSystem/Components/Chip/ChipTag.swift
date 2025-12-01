@@ -158,11 +158,19 @@ public struct ChipTag: View {
 
             // 削除ボタン（×）
             Button(action: onRemove) {
-                Image(systemName: "xmark")
-                    .font(.system(size: 10, weight: .bold))
-                    .foregroundColor(configuration.closeButtonColor)
-                    .frame(width: 16, height: 16)
-                    .contentShape(Rectangle())
+                ZStack {
+                    // 円形の背景
+                    Circle()
+                        .stroke(configuration.closeButtonColor, lineWidth: 1)
+                        .frame(width: 16, height: 16)
+
+                    // ×アイコン
+                    Image(systemName: "xmark")
+                        .font(.system(size: 8, weight: .bold))
+                        .foregroundColor(configuration.closeButtonColor)
+                }
+                .frame(width: 20, height: 20)
+                .contentShape(Rectangle())
             }
             .buttonStyle(PlainButtonStyle())
             .accessibilityLabel("\(text)を削除")
@@ -180,16 +188,10 @@ public struct ChipTag: View {
         .overlay(
             Group {
                 if configuration.showFocusRing {
-                    ZStack {
-                        // 外側の黒いフォーカスリング
-                        RoundedRectangle(cornerRadius: 999)
-                            .stroke(AppColor.Neutral.black, lineWidth: 2)
-                            .padding(-4)
-                        // 内側の黄色のフォーカスリング
-                        RoundedRectangle(cornerRadius: 999)
-                            .stroke(AppColor.Primitive.Yellow.yellow300, lineWidth: 2)
-                            .padding(-2)
-                    }
+                    // DADS仕様: 黒のフォーカスリングのみ
+                    RoundedRectangle(cornerRadius: 999)
+                        .stroke(AppColor.Neutral.black, lineWidth: 3)
+                        .padding(-3)
                 }
             }
         )
