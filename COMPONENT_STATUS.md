@@ -41,7 +41,7 @@ DADS (デジタル庁デザインシステム) をベースにしている
 | 🟢 | テキストエリア | TextArea | 複数行テキスト入力 | `ProtoDesignSystem/Sources/DesignSystem/Components/TextArea` |
 | 🔴 | 日付ピッカー／カレンダー | DatePicker | 日付選択 | - |
 | 🟢 | ボタン | Button | アクション実行 | `ProtoDesignSystem/Sources/DesignSystem/Components/Button` |
-| 🔴 | ラジオボタン | RadioButton | 単一選択 | - |
+| 🟢 | ラジオボタン | RadioButton | 単一選択 | `ProtoDesignSystem/Sources/DesignSystem/Components/RadioButton` |
 
 ## Feedback（フィードバック）
 
@@ -89,6 +89,7 @@ DADS (デジタル庁デザインシステム) をベースにしている
 
 ## 更新履歴
 
+- 2025-12-01: RadioButton実装完了（16状態、3レイアウト（Inline/Stacked/Units）、3サイズ、RadioGroup対応）
 - 2025-12-01: TextArea実装完了（複数行入力、文字数カウンター、Readonly状態、7つの状態サポート）
 - 2025-12-01: Banner実装完了（NotificationBanner/EmergencyBanner統合、5ステータス、2バリアント、2レイアウト）
 - 2025-12-01: ChipTag実装完了（4つの状態、5色のカラーバリエーション、削除ボタン、FlowLayout対応）
