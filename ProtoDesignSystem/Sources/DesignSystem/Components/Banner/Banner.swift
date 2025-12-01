@@ -2,8 +2,8 @@ import SwiftUI
 
 // MARK: - Custom Shapes
 
-private struct Triangle: Shape {
-    func path(in rect: CGRect) -> Path {
+public struct Triangle: Shape {
+    public func path(in rect: CGRect) -> Path {
         var path = Path()
         path.move(to: CGPoint(x: rect.midX, y: rect.minY))
         path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
@@ -13,8 +13,8 @@ private struct Triangle: Shape {
     }
 }
 
-private struct Octagon: Shape {
-    func path(in rect: CGRect) -> Path {
+public struct Octagon: Shape {
+    public func path(in rect: CGRect) -> Path {
         var path = Path()
         let centerX = rect.midX
         let centerY = rect.midY

@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		C1BDCD8E2EDDCF0500AABDE5 /* Prefire in Frameworks */ = {isa = PBXBuildFile; productRef = C1BDCD8D2EDDCF0500AABDE5 /* Prefire */; };
+		C1BDCF532EDDDB6700AABDE5 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = C1BDCF522EDDDB6700AABDE5 /* SnapshotTesting */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		C19542912E2E4BE800CB1783 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -59,6 +64,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1BDCD8E2EDDCF0500AABDE5 /* Prefire in Frameworks */,
+				C1BDCF532EDDDB6700AABDE5 /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +135,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				C1BDCF502EDDD50900AABDE5 /* PBXTargetDependency */,
 				C19542922E2E4BE800CB1783 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
@@ -135,6 +143,8 @@
 			);
 			name = ProtoDesignSystemTests;
 			packageProductDependencies = (
+				C1BDCD8D2EDDCF0500AABDE5 /* Prefire */,
+				C1BDCF522EDDDB6700AABDE5 /* SnapshotTesting */,
 			);
 			productName = ProtoDesignSystemTests;
 			productReference = C19542902E2E4BE800CB1783 /* ProtoDesignSystemTests.xctest */;
@@ -195,6 +205,10 @@
 			);
 			mainGroup = C19542752E2E4BE700CB1783;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				C1BDCD8C2EDDCF0500AABDE5 /* XCRemoteSwiftPackageReference "Prefire" */,
+				C1BDCF512EDDDB6700AABDE5 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = C195427F2E2E4BE700CB1783 /* Products */;
 			projectDirPath = "";
@@ -265,6 +279,10 @@
 			isa = PBXTargetDependency;
 			target = C195427D2E2E4BE700CB1783 /* ProtoDesignSystem */;
 			targetProxy = C195429B2E2E4BE800CB1783 /* PBXContainerItemProxy */;
+		};
+		C1BDCF502EDDD50900AABDE5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = C1BDCF4F2EDDD50900AABDE5 /* PrefireTestsPlugin */;
 		};
 /* End PBXTargetDependency section */
 
@@ -554,6 +572,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C1BDCD8C2EDDCF0500AABDE5 /* XCRemoteSwiftPackageReference "Prefire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/BarredEwe/Prefire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.0;
+			};
+		};
+		C1BDCF512EDDDB6700AABDE5 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.18.7;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C1BDCD8D2EDDCF0500AABDE5 /* Prefire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1BDCD8C2EDDCF0500AABDE5 /* XCRemoteSwiftPackageReference "Prefire" */;
+			productName = Prefire;
+		};
+		C1BDCF4F2EDDD50900AABDE5 /* PrefireTestsPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1BDCD8C2EDDCF0500AABDE5 /* XCRemoteSwiftPackageReference "Prefire" */;
+			productName = "plugin:PrefireTestsPlugin";
+		};
+		C1BDCF522EDDDB6700AABDE5 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1BDCF512EDDDB6700AABDE5 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C19542762E2E4BE700CB1783 /* Project object */;
 }
