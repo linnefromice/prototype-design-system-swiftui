@@ -38,7 +38,7 @@ DADS (デジタル庁デザインシステム) をベースにしている
 | 🔴 | 検索ボックス | SearchBox | 検索入力 | - |
 | 🟢 | セレクトボックス | SelectBox | 選択式入力 | `ProtoDesignSystem/Sources/DesignSystem/Components/SelectBox` |
 | 🟢 | チェックボックス | Checkbox | 複数選択 | `ProtoDesignSystem/Sources/DesignSystem/Components/Checkbox` |
-| 🔴 | テキストエリア | TextArea | 複数行テキスト入力 | - |
+| 🟢 | テキストエリア | TextArea | 複数行テキスト入力 | `ProtoDesignSystem/Sources/DesignSystem/Components/TextArea` |
 | 🔴 | 日付ピッカー／カレンダー | DatePicker | 日付選択 | - |
 | 🟢 | ボタン | Button | アクション実行 | `ProtoDesignSystem/Sources/DesignSystem/Components/Button` |
 | 🔴 | ラジオボタン | RadioButton | 単一選択 | - |
@@ -89,6 +89,7 @@ DADS (デジタル庁デザインシステム) をベースにしている
 
 ## 更新履歴
 
+- 2025-12-01: TextArea実装完了（複数行入力、文字数カウンター、Readonly状態、7つの状態サポート）
 - 2025-12-01: Banner実装完了（NotificationBanner/EmergencyBanner統合、5ステータス、2バリアント、2レイアウト）
 - 2025-12-01: ChipTag実装完了（4つの状態、5色のカラーバリエーション、削除ボタン、FlowLayout対応）
 - 2025-12-01: ChipLabel実装完了（4種類のスタイル、9色のカラーバリエーション、アクセシビリティ対応）
