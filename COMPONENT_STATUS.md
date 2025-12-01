@@ -47,8 +47,8 @@ DADS (デジタル庁デザインシステム) をベースにしている
 
 | ステータス | コンポーネント名 | 英語名 | 説明 | パス |
 |:---:|---|---|---|---|
-| 🔴 | 緊急時バナー | EmergencyBanner | 緊急性の高い通知 | - |
-| 🔴 | ノティフィケーションバナー | NotificationBanner | 一般的な通知 | - |
+| 🟢 | 緊急時バナー | EmergencyBanner | 緊急性の高い通知 | `ProtoDesignSystem/Sources/DesignSystem/Components/Banner` |
+| 🟢 | ノティフィケーションバナー | NotificationBanner | 一般的な通知 | `ProtoDesignSystem/Sources/DesignSystem/Components/Banner` |
 | 🔴 | プログレスインジケーター | ProgressIndicator | 進行状況の表示 | - |
 | 🔴 | モーダルダイアログ | ModalDialog | 重要な情報の強制表示 | - |
 
@@ -89,6 +89,7 @@ DADS (デジタル庁デザインシステム) をベースにしている
 
 ## 更新履歴
 
+- 2025-12-01: Banner実装完了（NotificationBanner/EmergencyBanner統合、5ステータス、2バリアント、2レイアウト）
 - 2025-12-01: ChipTag実装完了（4つの状態、5色のカラーバリエーション、削除ボタン、FlowLayout対応）
 - 2025-12-01: ChipLabel実装完了（4種類のスタイル、9色のカラーバリエーション、アクセシビリティ対応）
 - 2025-11-30: SelectBoxをリファクタリング（ジェネリック型サポート、エラー状態、アクセシビリティ対応を追加）
