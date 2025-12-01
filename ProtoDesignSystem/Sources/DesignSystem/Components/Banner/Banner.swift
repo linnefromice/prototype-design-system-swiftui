@@ -1,5 +1,42 @@
 import SwiftUI
 
+// MARK: - Custom Shapes
+
+private struct Triangle: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        path.move(to: CGPoint(x: rect.midX, y: rect.minY))
+        path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
+        path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
+        path.closeSubpath()
+        return path
+    }
+}
+
+private struct Octagon: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        let centerX = rect.midX
+        let centerY = rect.midY
+        let radius = min(rect.width, rect.height) / 2
+
+        // Calculate points for a regular octagon
+        for i in 0..<8 {
+            let angle = CGFloat(i) * .pi / 4 - .pi / 8
+            let x = centerX + radius * cos(angle)
+            let y = centerY + radius * sin(angle)
+
+            if i == 0 {
+                path.move(to: CGPoint(x: x, y: y))
+            } else {
+                path.addLine(to: CGPoint(x: x, y: y))
+            }
+        }
+        path.closeSubpath()
+        return path
+    }
+}
+
 // MARK: - Enums
 
 public enum BannerStatus: CaseIterable {
@@ -27,13 +64,13 @@ public enum BannerStatus: CaseIterable {
     var iconName: String {
         switch self {
         case .success:
-            return "checkmark.circle.fill"
+            return "checkmark"
         case .error:
-            return "xmark.circle.fill"
+            return "xmark"
         case .warning:
-            return "exclamationmark.triangle.fill"
+            return "exclamationmark"
         case .info, .infoNeutral:
-            return "info.circle.fill"
+            return "info"
         }
     }
 
@@ -49,6 +86,23 @@ public enum BannerStatus: CaseIterable {
             return "情報"
         case .infoNeutral:
             return "情報"
+        }
+    }
+
+    enum IconShape {
+        case circle
+        case triangle
+        case octagon
+    }
+
+    var iconShape: IconShape {
+        switch self {
+        case .success, .info, .infoNeutral:
+            return .circle
+        case .error:
+            return .octagon
+        case .warning:
+            return .triangle
         }
     }
 }
@@ -123,13 +177,44 @@ public struct Banner: View {
     // MARK: - Status Icon
 
     private var statusIcon: some View {
-        Image(systemName: status.iconName)
-            .font(.system(size: 16, weight: .bold))
-            .foregroundColor(variant == .colorChip ? AppColor.Neutral.white : AppColor.Neutral.white)
-            .frame(width: 24, height: 24)
-            .background(status.color)
-            .clipShape(Circle())
-            .accessibilityHidden(true)
+        Group {
+            switch status.iconShape {
+            case .circle:
+                ZStack {
+                    Circle()
+                        .fill(status.color)
+                        .frame(width: 24, height: 24)
+                    Image(systemName: status.iconName)
+                        .font(.system(size: 14, weight: .bold))
+                        .foregroundColor(AppColor.Neutral.white)
+                }
+                .frame(width: 24, height: 24)
+
+            case .triangle:
+                ZStack {
+                    Triangle()
+                        .fill(status.color)
+                        .frame(width: 28, height: 28)
+                    Image(systemName: status.iconName)
+                        .font(.system(size: 14, weight: .bold))
+                        .foregroundColor(AppColor.Neutral.white)
+                        .offset(y: 1)
+                }
+                .frame(width: 28, height: 28)
+
+            case .octagon:
+                ZStack {
+                    Octagon()
+                        .fill(status.color)
+                        .frame(width: 24, height: 24)
+                    Image(systemName: status.iconName)
+                        .font(.system(size: 14, weight: .bold))
+                        .foregroundColor(AppColor.Neutral.white)
+                }
+                .frame(width: 24, height: 24)
+            }
+        }
+        .accessibilityHidden(true)
     }
 
     // MARK: - Close Button
@@ -287,96 +372,168 @@ public struct Banner: View {
 #Preview {
     ScrollView {
         VStack(spacing: 24) {
-            Text("Standard / Vertical")
-                .font(.title2.bold())
-                .frame(maxWidth: .infinity, alignment: .leading)
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Status Icons")
+                    .font(.title2.bold())
 
-            VStack(spacing: 16) {
-                ForEach(BannerStatus.allCases, id: \.self) { status in
-                    Banner(
-                        status: status,
-                        title: "バナータイトル",
-                        date: "年月日",
-                        descriptionText: "バナーデスクリプション",
-                        chipLabel: "ラベル",
-                        actionTitle: "アクションボタン",
-                        onAction: {},
-                        onClose: {},
-                        layout: .vertical,
-                        variant: .standard
-                    )
+                HStack(spacing: 16) {
+                    ForEach(BannerStatus.allCases, id: \.self) { status in
+                        VStack(spacing: 8) {
+                            Group {
+                                switch status.iconShape {
+                                case .circle:
+                                    ZStack {
+                                        Circle()
+                                            .fill(status.color)
+                                            .frame(width: 24, height: 24)
+                                        Image(systemName: status.iconName)
+                                            .font(.system(size: 14, weight: .bold))
+                                            .foregroundColor(AppColor.Neutral.white)
+                                    }
+                                    .frame(width: 24, height: 24)
+
+                                case .triangle:
+                                    ZStack {
+                                        Triangle()
+                                            .fill(status.color)
+                                            .frame(width: 28, height: 28)
+                                        Image(systemName: status.iconName)
+                                            .font(.system(size: 14, weight: .bold))
+                                            .foregroundColor(AppColor.Neutral.white)
+                                            .offset(y: 1)
+                                    }
+                                    .frame(width: 28, height: 28)
+
+                                case .octagon:
+                                    ZStack {
+                                        Octagon()
+                                            .fill(status.color)
+                                            .frame(width: 24, height: 24)
+                                        Image(systemName: status.iconName)
+                                            .font(.system(size: 14, weight: .bold))
+                                            .foregroundColor(AppColor.Neutral.white)
+                                    }
+                                    .frame(width: 24, height: 24)
+                                }
+                            }
+
+                            Text(status.label)
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                    }
                 }
             }
 
             Divider()
                 .padding(.vertical)
 
-            Text("Color Chip / Vertical")
-                .font(.title2.bold())
-                .frame(maxWidth: .infinity, alignment: .leading)
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Standard / Vertical")
+                    .font(.title2.bold())
 
-            VStack(spacing: 16) {
-                ForEach(BannerStatus.allCases, id: \.self) { status in
-                    Banner(
-                        status: status,
-                        title: "バナータイトル",
-                        date: "年月日",
-                        descriptionText: "バナーデスクリプション",
-                        chipLabel: "ラベル",
-                        actionTitle: "アクションボタン",
-                        onAction: {},
-                        onClose: {},
-                        layout: .vertical,
-                        variant: .colorChip
-                    )
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 16) {
+                        ForEach(BannerStatus.allCases, id: \.self) { status in
+                            Banner(
+                                status: status,
+                                title: "バナータイトル",
+                                date: "年月日",
+                                descriptionText: "バナーデスクリプション",
+                                chipLabel: "ラベル",
+                                actionTitle: "アクションボタン",
+                                onAction: {},
+                                onClose: {},
+                                layout: .vertical,
+                                variant: .standard
+                            )
+                            .frame(width: 280)
+                        }
+                    }
                 }
             }
 
             Divider()
                 .padding(.vertical)
 
-            Text("Standard / Horizontal")
-                .font(.title2.bold())
-                .frame(maxWidth: .infinity, alignment: .leading)
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Color Chip / Vertical")
+                    .font(.title2.bold())
 
-            VStack(spacing: 16) {
-                ForEach(BannerStatus.allCases, id: \.self) { status in
-                    Banner(
-                        status: status,
-                        title: "バナータイトル",
-                        date: "年月日",
-                        descriptionText: "バナーデスクリプション",
-                        chipLabel: "ラベル",
-                        actionTitle: "アクションボタン",
-                        onAction: {},
-                        onClose: {},
-                        layout: .horizontal,
-                        variant: .standard
-                    )
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 16) {
+                        ForEach(BannerStatus.allCases, id: \.self) { status in
+                            Banner(
+                                status: status,
+                                title: "バナータイトル",
+                                date: "年月日",
+                                descriptionText: "バナーデスクリプション",
+                                chipLabel: "ラベル",
+                                actionTitle: "アクションボタン",
+                                onAction: {},
+                                onClose: {},
+                                layout: .vertical,
+                                variant: .colorChip
+                            )
+                            .frame(width: 280)
+                        }
+                    }
                 }
             }
 
             Divider()
                 .padding(.vertical)
 
-            Text("Color Chip / Horizontal")
-                .font(.title2.bold())
-                .frame(maxWidth: .infinity, alignment: .leading)
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Standard / Horizontal")
+                    .font(.title2.bold())
 
-            VStack(spacing: 16) {
-                ForEach(BannerStatus.allCases, id: \.self) { status in
-                    Banner(
-                        status: status,
-                        title: "バナータイトル",
-                        date: "年月日",
-                        descriptionText: "バナーデスクリプション",
-                        chipLabel: "ラベル",
-                        actionTitle: "アクションボタン",
-                        onAction: {},
-                        onClose: {},
-                        layout: .horizontal,
-                        variant: .colorChip
-                    )
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 16) {
+                        ForEach(BannerStatus.allCases, id: \.self) { status in
+                            Banner(
+                                status: status,
+                                title: "バナータイトル",
+                                date: "年月日",
+                                descriptionText: "バナーデスクリプション",
+                                chipLabel: "ラベル",
+                                actionTitle: "アクションボタン",
+                                onAction: {},
+                                onClose: {},
+                                layout: .horizontal,
+                                variant: .standard
+                            )
+                            .frame(width: 320)
+                        }
+                    }
+                }
+            }
+
+            Divider()
+                .padding(.vertical)
+
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Color Chip / Horizontal")
+                    .font(.title2.bold())
+
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 16) {
+                        ForEach(BannerStatus.allCases, id: \.self) { status in
+                            Banner(
+                                status: status,
+                                title: "バナータイトル",
+                                date: "年月日",
+                                descriptionText: "バナーデスクリプション",
+                                chipLabel: "ラベル",
+                                actionTitle: "アクションボタン",
+                                onAction: {},
+                                onClose: {},
+                                layout: .horizontal,
+                                variant: .colorChip
+                            )
+                            .frame(width: 320)
+                        }
+                    }
                 }
             }
 
