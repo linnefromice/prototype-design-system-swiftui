@@ -59,7 +59,4 @@ struct ContentView: View {
     }
 }
 
-#Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
-}
+// Preview is defined in ContentView+Preview.swift so it can be reused from snapshot tests.
