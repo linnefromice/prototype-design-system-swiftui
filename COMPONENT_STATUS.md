@@ -2,6 +2,12 @@
 
 このドキュメントでは、デザインシステムのコンポーネント実装状況を管理します。
 
+## スコープ
+
+DADS (デジタル庁デザインシステム) をベースにしている
+
+- https://design.digital.go.jp/dads/
+
 ## ステータス定義
 
 - 🔴 **Not Started**: 未着手
@@ -17,8 +23,8 @@
 | 🔴 | アコーディオン | Accordion | 開閉式の情報表示 | - |
 | 🔴 | 引用ブロック | BlockQuote | 引用表示 | - |
 | 🔴 | カード | Card | まとまりある情報ブロック | - |
-| 🔴 | チップタグ | ChipTag | タグ型ラベル | - |
-| 🔴 | チップラベル | ChipLabel | 状態ラベル | - |
+| 🟢 | チップタグ | ChipTag | タグ型ラベル | `ProtoDesignSystem/Sources/DesignSystem/Components/Chip` |
+| 🟢 | チップラベル | ChipLabel | 状態ラベル | `ProtoDesignSystem/Sources/DesignSystem/Components/Chip` |
 | 🔴 | ディスクロージャー | Disclosure | 詳細開閉要素 | - |
 | 🔴 | 説明リスト | DescriptionList | 定義リスト（dl） | - |
 | 🔴 | リスト | List | 箇条書き（ul/ol） | - |
@@ -83,6 +89,8 @@
 
 ## 更新履歴
 
+- 2025-12-01: ChipTag実装完了（4つの状態、5色のカラーバリエーション、削除ボタン、FlowLayout対応）
+- 2025-12-01: ChipLabel実装完了（4種類のスタイル、9色のカラーバリエーション、アクセシビリティ対応）
 - 2025-11-30: SelectBoxをリファクタリング（ジェネリック型サポート、エラー状態、アクセシビリティ対応を追加）
 - 2025-11-30: 自動更新（実装済み: 5コンポーネント）
 - 2025-11-30: 初版作成、既存実装状況を反映（Button, Checkbox, InputText, SelectBox, UtilityLink）
