@@ -49,7 +49,7 @@ DADS (デジタル庁デザインシステム) をベースにしている
 |:---:|---|---|---|---|
 | 🟢 | 緊急時バナー | EmergencyBanner | 緊急性の高い通知 | `ProtoDesignSystem/Sources/DesignSystem/Components/Banner` |
 | 🟢 | ノティフィケーションバナー | NotificationBanner | 一般的な通知 | `ProtoDesignSystem/Sources/DesignSystem/Components/Banner` |
-| 🔴 | プログレスインジケーター | ProgressIndicator | 進行状況の表示 | - |
+| 🟢 | プログレスインジケーター | ProgressIndicator | 進行状況の表示 | `ProtoDesignSystem/Sources/DesignSystem/Components/ProgressIndicator` |
 | 🔴 | モーダルダイアログ | ModalDialog | 重要な情報の強制表示 | - |
 
 ## Navigation（ナビゲーション）
@@ -89,6 +89,7 @@ DADS (デジタル庁デザインシステム) をベースにしている
 
 ## 更新履歴
 
+- 2025-12-03: ProgressIndicator実装完了（Circular/Linear 2種類、サイズバリエーション、背景カードオプション、ProgressViewStyle準拠）
 - 2025-12-01: RadioButton実装完了（16状態、3レイアウト（Inline/Stacked/Units）、3サイズ、RadioGroup対応）
 - 2025-12-01: TextArea実装完了（複数行入力、文字数カウンター、Readonly状態、7つの状態サポート）
 - 2025-12-01: Banner実装完了（NotificationBanner/EmergencyBanner統合、5ステータス、2バリアント、2レイアウト）
