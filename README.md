@@ -37,14 +37,25 @@ make status-detail
 
 ## UI Snapshot Catalog
 
-スナップショットテストで生成されたUIプレビュー画像（`ProtoDesignSystemTests/__Snapshots__/PreviewTests.generated` 配下）をGitHub Pagesで閲覧できるようにするためのミニマム実装を追加しています。
+`docs/` 配下に Hugo で構築したスナップショットカタログを置いています。スナップショットテストの PNG をコピーして Hugo のデータに変換し、GitHub Pages で公開します。
 
-- `Scripts/generate_snapshot_catalog.py` でスナップショット一覧の静的HTMLを生成します（デフォルトの出力先はスナップショット画像と同じ `ProtoDesignSystemTests/__Snapshots__/PreviewTests.generated`）。
-- GitHub Actionsの **Deploy UI Snapshot Catalog** ワークフローが実行されると、`ProtoDesignSystemTests/__Snapshots__/PreviewTests.generated` をそのまま Pages に公開します（画像を `docs/` にコピーしません）。
-- ローカルで確認する場合は、以下を実行して生成された `ProtoDesignSystemTests/__Snapshots__/PreviewTests.generated/index.html` をブラウザで開いてください。
+- `Scripts/prepare_snapshot_catalog.py` が PNG を `docs/static/snapshots` にコピーし、Hugo 用のデータ `docs/data/snapshots.json` を生成します。
+- `.github/workflows/ui-snapshot-catalog.yml` で Hugo（`docs/`）をビルドし、`docs/public` を Pages にデプロイします。
+- Hugo の設定は `docs/hugo.toml`、レイアウトは `docs/layouts/` にあります（シングルページの検索付きギャラリー）。
+
+ローカルで動作確認する場合は Hugo をインストールした上で以下を実行してください。
 
 ```bash
-python Scripts/generate_snapshot_catalog.py \
+# スナップショットをコピーしデータファイルを生成
+python Scripts/prepare_snapshot_catalog.py \
   --snapshots ProtoDesignSystemTests/__Snapshots__/PreviewTests.generated \
-  --output ProtoDesignSystemTests/__Snapshots__/PreviewTests.generated
+  --static-dir docs/static/snapshots \
+  --data-file docs/data/snapshots.json \
+  --clean
+
+# サイトをビルド（出力先は docs/public）
+hugo --source docs --destination docs/public --baseURL "http://localhost:1313/" --minify
+
+# ローカルサーバで確認したい場合
+hugo server --source docs --buildDrafts --baseURL "http://localhost:1313/"
 ```

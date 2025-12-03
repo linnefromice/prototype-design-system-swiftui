@@ -1,0 +1,14 @@
+baseURL = "/"
+title = "ProtoDesignSystem UI Snapshots"
+languageCode = "en-us"
+publishDir = "public"
+relativeURLs = true
+canonifyURLs = true
+enableRobotsTXT = true
+
+[params]
+  tagline = "Preview snapshots from ProtoDesignSystem snapshot tests"
+  intro = "Search and browse the latest generated previews from UI snapshot tests."
+
+[markup.goldmark.renderer]
+unsafe = true

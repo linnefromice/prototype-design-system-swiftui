@@ -22,6 +22,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Configure Pages
+        id: pages
         uses: actions/configure-pages@v5
         with:
           enablement: true
@@ -31,16 +32,32 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Generate UI snapshot catalog
+      - name: Prepare Hugo snapshot data
         run: |
-          python Scripts/generate_snapshot_catalog.py \
+          python Scripts/prepare_snapshot_catalog.py \
             --snapshots ProtoDesignSystemTests/__Snapshots__/PreviewTests.generated \
-            --output ProtoDesignSystemTests/__Snapshots__/PreviewTests.generated
+            --static-dir docs/static/snapshots \
+            --data-file docs/data/snapshots.json \
+            --clean
+
+      - name: Set up Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: '0.126.1'
+          extended: true
+
+      - name: Build Hugo site
+        run: |
+          hugo \
+            --source docs \
+            --destination docs/public \
+            --baseURL "${{ steps.pages.outputs.base_url }}" \
+            --minify
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ProtoDesignSystemTests/__Snapshots__/PreviewTests.generated
+          path: docs/public
 
   deploy:
     runs-on: ubuntu-latest
