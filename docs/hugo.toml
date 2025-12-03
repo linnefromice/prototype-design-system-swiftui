@@ -1,4 +1,5 @@
-baseURL = "/"
+# baseURL is set dynamically by GitHub Actions
+# baseURL = "/"
 title = "ProtoDesignSystem UI Snapshots"
 languageCode = "en-us"
 publishDir = "public"
