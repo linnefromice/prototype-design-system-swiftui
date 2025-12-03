@@ -28,13 +28,16 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--output",
         type=Path,
-        default=Path("ui-catalog"),
-        help="Directory where the catalog HTML and assets will be written.",
+        default=Path("ProtoDesignSystemTests/__Snapshots__/PreviewTests.generated"),
+        help=(
+            "Directory where the catalog HTML will be written. Defaults to the "
+            "snapshot directory so the assets are reused in place."
+        ),
     )
     return parser.parse_args()
 
 
-def build_cards(image_names: list[str]) -> str:
+def build_cards(image_names: list[str], asset_prefix: str) -> str:
     cards = []
     for name in image_names:
         display_name = name.rsplit(".", 1)[0].replace("_", " ")
@@ -42,7 +45,7 @@ def build_cards(image_names: list[str]) -> str:
             f"""
             <article class=\"snapshot-card\">
                 <div class=\"snapshot-frame\">
-                    <img src=\"snapshots/{html.escape(name)}\" alt=\"{html.escape(display_name)}\" loading=\"lazy\" />
+                    <img src=\"{html.escape(asset_prefix + name)}\" alt=\"{html.escape(display_name)}\" loading=\"lazy\" />
                 </div>
                 <h2>{html.escape(display_name)}</h2>
             </article>
@@ -51,9 +54,9 @@ def build_cards(image_names: list[str]) -> str:
     return "\n".join(cards)
 
 
-def render_html(image_names: list[str]) -> str:
+def render_html(image_names: list[str], asset_prefix: str) -> str:
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
-    cards = build_cards(image_names)
+    cards = build_cards(image_names, asset_prefix)
     return f"""
 <!doctype html>
 <html lang=\"en\">
@@ -173,18 +176,24 @@ def generate_catalog(snapshot_dir: Path, output_dir: Path) -> None:
         raise SystemExit(f"Snapshot directory not found: {snapshot_dir}")
 
     output_dir.mkdir(parents=True, exist_ok=True)
-    asset_dir = output_dir / "snapshots"
-    asset_dir.mkdir(exist_ok=True)
+
+    reuse_assets = snapshot_dir == output_dir
+    asset_dir = snapshot_dir if reuse_assets else output_dir / "snapshots"
+    asset_prefix = "" if reuse_assets else "snapshots/"
+
+    if not reuse_assets:
+        asset_dir.mkdir(exist_ok=True)
 
     image_files = sorted(p for p in snapshot_dir.glob("*.png") if p.is_file())
     image_names = []
     for src in image_files:
-        dest = asset_dir / src.name
-        shutil.copy2(src, dest)
+        if not reuse_assets:
+            dest = asset_dir / src.name
+            shutil.copy2(src, dest)
         image_names.append(src.name)
 
     index_path = output_dir / "index.html"
-    index_path.write_text(render_html(image_names), encoding="utf-8")
+    index_path.write_text(render_html(image_names, asset_prefix), encoding="utf-8")
 
     print(f"Catalog written to {index_path.relative_to(Path.cwd())}")
 

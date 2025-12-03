@@ -39,12 +39,12 @@ make status-detail
 
 スナップショットテストで生成されたUIプレビュー画像（`ProtoDesignSystemTests/__Snapshots__/PreviewTests.generated` 配下）をGitHub Pagesで閲覧できるようにするためのミニマム実装を追加しています。
 
-- `Scripts/generate_snapshot_catalog.py` でスナップショット一覧の静的HTMLを生成します。
-- GitHub Actionsの **Deploy UI Snapshot Catalog** ワークフローが実行されると、HTMLとスナップショット画像をページとして公開します。
-- ローカルで確認する場合は、以下を実行して生成された `ui-catalog/index.html` をブラウザで開いてください。
+- `Scripts/generate_snapshot_catalog.py` でスナップショット一覧の静的HTMLを生成します（デフォルトの出力先はスナップショット画像と同じ `ProtoDesignSystemTests/__Snapshots__/PreviewTests.generated`）。
+- GitHub Actionsの **Deploy UI Snapshot Catalog** ワークフローが実行されると、`ProtoDesignSystemTests/__Snapshots__/PreviewTests.generated` をそのまま Pages に公開します（画像を `docs/` にコピーしません）。
+- ローカルで確認する場合は、以下を実行して生成された `ProtoDesignSystemTests/__Snapshots__/PreviewTests.generated/index.html` をブラウザで開いてください。
 
 ```bash
 python Scripts/generate_snapshot_catalog.py \
   --snapshots ProtoDesignSystemTests/__Snapshots__/PreviewTests.generated \
-  --output ui-catalog
+  --output ProtoDesignSystemTests/__Snapshots__/PreviewTests.generated
 ```
