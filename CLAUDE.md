@@ -4,7 +4,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a SwiftUI-based design system prototype implementing reusable UI components following Japanese government/public sector design patterns. The project contains 39 planned components across categories: Content, Form, Feedback, Navigation, Layout, and Table.
+This is a SwiftUI-based design system prototype implementing reusable UI components following DADS (Digital Agency Design System) specifications for Japanese government/public sector applications.
+
+**Implementation Status**: 12 / 39 components completed (30.8%)
+- **Form**: Button, Checkbox, InputText, RadioButton, SelectBox, TextArea
+- **Content**: ChipLabel, ChipTag, UtilityLink
+- **Feedback**: Banner (EmergencyBanner + NotificationBanner), ProgressIndicator
+
+Component categories: Content, Form, Feedback, Navigation, Layout, and Table.
 
 ## Build & Development
 
@@ -35,16 +42,21 @@ Component status is tracked in:
 
 ```
 ProtoDesignSystem/Sources/DesignSystem/
-├── Components/          # UI components (Button, Checkbox, InputText, SelectBox, UtilityLink)
-│   ├── Button/         # Multiple button variants (SolidFillButton, OutlineButton, TextButton)
-│   ├── Checkbox/
-│   ├── InputText/
-│   ├── SelectBox/
-│   └── UtilityLink/
-└── Definitions/        # Design tokens and shared constants
-    ├── AppColor.swift   # Color palette (Neutral, Primitive, Semantic)
-    ├── Size.swift       # BorderRadius values
-    └── Typography.swift # FontSize, FontWeight, FontFamily
+├── Components/                 # UI components
+│   ├── Banner/                # NotificationBanner, EmergencyBanner (5 statuses, 2 variants, 2 layouts)
+│   ├── Button/                # Multiple button variants (SolidFillButton, OutlineButton, TextButton)
+│   ├── Checkbox/              # Checkbox with multiple states and sizes
+│   ├── Chip/                  # ChipLabel (4 styles, 9 colors), ChipTag (4 states, 5 colors)
+│   ├── InputText/             # Single-line text input with error states
+│   ├── ProgressIndicator/     # Circular and Linear progress (ProgressViewStyle-based)
+│   ├── RadioButton/           # RadioButton & RadioGroup (16 states, 3 layouts)
+│   ├── SelectBox/             # Generic dropdown with type safety
+│   ├── TextArea/              # Multi-line text input with character counter
+│   └── UtilityLink/           # Navigation links
+└── Definitions/               # Design tokens and shared constants
+    ├── AppColor.swift         # Color palette (Neutral, Primitive, Semantic)
+    ├── Size.swift             # BorderRadius values
+    └── Typography.swift       # FontSize, FontWeight, FontFamily
 ```
 
 ### Design Tokens
@@ -108,6 +120,29 @@ public struct SelectBox<T: Hashable>: View {
 .accessibilityHint(error ?? "")
 ```
 
+**Custom SwiftUI Styles**: Some components extend SwiftUI's native style protocols.
+```swift
+// ProgressIndicator uses ProgressViewStyle for consistent API
+public struct DADSCircularProgressViewStyle: ProgressViewStyle {
+    public func makeBody(configuration: Configuration) -> some View {
+        // Custom circular progress rendering
+        let progress = configuration.fractionCompleted ?? 0
+        // ...
+    }
+}
+
+// Extension for convenience
+extension ProgressViewStyle where Self == DADSCircularProgressViewStyle {
+    public static var dadsCircular: DADSCircularProgressViewStyle {
+        DADSCircularProgressViewStyle()
+    }
+}
+
+// Usage
+ProgressView("Loading", value: 0.5)
+    .progressViewStyle(.dadsCircular(size: 48))
+```
+
 ### Preview Strategy
 
 All components include comprehensive SwiftUI Previews demonstrating:
@@ -149,6 +184,17 @@ Example preview pattern:
      - YYYY-MM-DD: ComponentName実装完了（key features）
      ```
    - Example entry: `- 2025-11-30: SelectBoxをリファクタリング（ジェネリック型サポート、エラー状態、アクセシビリティ対応を追加）`
+
+## Git Operations Policy
+
+**IMPORTANT**: Do NOT commit, push, or create pull requests unless explicitly requested by the user.
+
+- Wait for explicit instructions like:
+  - "コミットしてください" / "commit this"
+  - "プルリクエストを作成してください" / "create a pull request"
+  - "push してください" / "push to remote"
+- After completing implementation or fixes, inform the user and wait for their decision
+- Exception: Only proceed with git operations when the user provides clear instructions
 
 ## Design Guidelines
 
