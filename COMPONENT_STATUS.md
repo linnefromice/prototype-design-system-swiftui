@@ -35,7 +35,7 @@ DADS (デジタル庁デザインシステム) をベースにしている
 | ステータス | コンポーネント名 | 英語名 | 説明 | パス |
 |:---:|---|---|---|---|
 | 🟢 | インプットテキスト | InputText | 単一行のテキスト入力 | `ProtoDesignSystem/Sources/DesignSystem/Components/InputText` |
-| 🔴 | 検索ボックス | SearchBox | 検索入力 | - |
+| 🟢 | 検索ボックス | SearchBox | 検索入力 | `ProtoDesignSystem/Sources/DesignSystem/Components/SearchBox` |
 | 🟢 | セレクトボックス | SelectBox | 選択式入力 | `ProtoDesignSystem/Sources/DesignSystem/Components/SelectBox` |
 | 🟢 | チェックボックス | Checkbox | 複数選択 | `ProtoDesignSystem/Sources/DesignSystem/Components/Checkbox` |
 | 🟢 | テキストエリア | TextArea | 複数行テキスト入力 | `ProtoDesignSystem/Sources/DesignSystem/Components/TextArea` |
@@ -89,6 +89,7 @@ DADS (デジタル庁デザインシステム) をベースにしている
 
 ## 更新履歴
 
+- 2025-12-03: SearchBox実装完了（検索対象セレクト、検索フィールド、検索ボタンの3要素統合、エラー状態、Disabled状態対応）
 - 2025-12-03: ProgressIndicator実装完了（Circular/Linear 2種類、サイズバリエーション、背景カードオプション、ProgressViewStyle準拠）
 - 2025-12-01: RadioButton実装完了（16状態、3レイアウト（Inline/Stacked/Units）、3サイズ、RadioGroup対応）
 - 2025-12-01: TextArea実装完了（複数行入力、文字数カウンター、Readonly状態、7つの状態サポート）
