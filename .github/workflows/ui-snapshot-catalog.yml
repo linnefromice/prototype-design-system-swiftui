@@ -50,7 +50,7 @@ jobs:
         run: |
           hugo \
             --source docs \
-            --destination docs/public \
+            --destination public \
             --baseURL "${{ steps.pages.outputs.base_url }}" \
             --minify
 

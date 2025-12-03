@@ -1,4 +1,125 @@
 {
-  "generated_at": null,
-  "snapshots": []
+  "generated_at": "2025-12-03 15:16 UTC",
+  "snapshots": [
+    {
+      "file": "Banner_0.1.png",
+      "title": "Banner 0.1",
+      "tags": [
+        "0.1",
+        "banner"
+      ]
+    },
+    {
+      "file": "Checkbox_0.1.png",
+      "title": "Checkbox 0.1",
+      "tags": [
+        "0.1",
+        "checkbox"
+      ]
+    },
+    {
+      "file": "ChipLabel_0.1.png",
+      "title": "ChipLabel 0.1",
+      "tags": [
+        "0.1",
+        "chiplabel"
+      ]
+    },
+    {
+      "file": "ChipTag_0.1.png",
+      "title": "ChipTag 0.1",
+      "tags": [
+        "0.1",
+        "chiptag"
+      ]
+    },
+    {
+      "file": "ContentView_0.1.png",
+      "title": "ContentView 0.1",
+      "tags": [
+        "0.1",
+        "contentview"
+      ]
+    },
+    {
+      "file": "InputText_0.1.png",
+      "title": "InputText 0.1",
+      "tags": [
+        "0.1",
+        "inputtext"
+      ]
+    },
+    {
+      "file": "OutlineButton_0.1.png",
+      "title": "OutlineButton 0.1",
+      "tags": [
+        "0.1",
+        "outlinebutton"
+      ]
+    },
+    {
+      "file": "ProgressIndicator_0.1.png",
+      "title": "ProgressIndicator 0.1",
+      "tags": [
+        "0.1",
+        "progressindicator"
+      ]
+    },
+    {
+      "file": "RadioButton_0.1.png",
+      "title": "RadioButton 0.1",
+      "tags": [
+        "0.1",
+        "radiobutton"
+      ]
+    },
+    {
+      "file": "SearchBox_0.1.png",
+      "title": "SearchBox 0.1",
+      "tags": [
+        "0.1",
+        "searchbox"
+      ]
+    },
+    {
+      "file": "SelectBox_0.1.png",
+      "title": "SelectBox 0.1",
+      "tags": [
+        "0.1",
+        "selectbox"
+      ]
+    },
+    {
+      "file": "SolidFillButton_0.1.png",
+      "title": "SolidFillButton 0.1",
+      "tags": [
+        "0.1",
+        "solidfillbutton"
+      ]
+    },
+    {
+      "file": "TextArea_0.1.png",
+      "title": "TextArea 0.1",
+      "tags": [
+        "0.1",
+        "textarea"
+      ]
+    },
+    {
+      "file": "TextButton_0.1.png",
+      "title": "TextButton 0.1",
+      "tags": [
+        "0.1",
+        "textbutton"
+      ]
+    },
+    {
+      "file": "UtilityLink_0.1.png",
+      "title": "UtilityLink 0.1",
+      "tags": [
+        "0.1",
+        "utilitylink"
+      ]
+    }
+  ]
 }
