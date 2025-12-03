@@ -34,3 +34,17 @@ make status-detail
 3. **更新履歴の追記**: 最新の更新を一番上に追加（形式: `- YYYY-MM-DD: コンポーネント名の実装完了（主な特徴）`）
 
 詳細な更新方法については [COMPONENT_STATUS.md](./COMPONENT_STATUS.md) の「更新履歴」セクションを参照してください。
+
+## UI Snapshot Catalog
+
+スナップショットテストで生成されたUIプレビュー画像（`ProtoDesignSystemTests/__Snapshots__/PreviewTests.generated` 配下）をGitHub Pagesで閲覧できるようにするためのミニマム実装を追加しています。
+
+- `Scripts/generate_snapshot_catalog.py` でスナップショット一覧の静的HTMLを生成します。
+- GitHub Actionsの **Deploy UI Snapshot Catalog** ワークフローが実行されると、HTMLとスナップショット画像をページとして公開します。
+- ローカルで確認する場合は、以下を実行して生成された `ui-catalog/index.html` をブラウザで開いてください。
+
+```bash
+python Scripts/generate_snapshot_catalog.py \
+  --snapshots ProtoDesignSystemTests/__Snapshots__/PreviewTests.generated \
+  --output ui-catalog
+```

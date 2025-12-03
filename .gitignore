@@ -7,3 +7,6 @@ xcuserdata/
 ## Custom
 ### Prompt
 Prompts/
+
+# Generated UI catalog output
+ui-catalog/
