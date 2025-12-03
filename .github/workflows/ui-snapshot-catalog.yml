@@ -35,12 +35,12 @@ jobs:
         run: |
           python Scripts/generate_snapshot_catalog.py \
             --snapshots ProtoDesignSystemTests/__Snapshots__/PreviewTests.generated \
-            --output ui-catalog
+            --output ProtoDesignSystemTests/__Snapshots__/PreviewTests.generated
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ui-catalog
+          path: ProtoDesignSystemTests/__Snapshots__/PreviewTests.generated
 
   deploy:
     runs-on: ubuntu-latest
