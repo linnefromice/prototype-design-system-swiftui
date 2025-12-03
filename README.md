@@ -43,6 +43,9 @@ make status-detail
 - GitHub Actionsの **Deploy UI Snapshot Catalog** ワークフローが実行されると、HTMLとスナップショット画像をページとして公開します。
 - ローカルで確認する場合は、以下を実行して生成された `ui-catalog/index.html` をブラウザで開いてください。
 
+> GitHub Pagesの有効化はリポジトリ管理者が一度手動で行ってください（Settings > Pages）。
+> ワークフローは公開済みのPagesサイトが存在する場合にのみデプロイを実行します。
+
 ```bash
 python Scripts/generate_snapshot_catalog.py \
   --snapshots ProtoDesignSystemTests/__Snapshots__/PreviewTests.generated \
