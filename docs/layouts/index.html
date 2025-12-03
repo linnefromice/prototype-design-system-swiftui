@@ -1,0 +1,123 @@
+{{ $data := .Site.Data.snapshots }}
+{{ $snapshots := $data.snapshots }}
+{{ $generated := $data.generated_at }}
+<!doctype html>
+<html lang="en">
+  <head>
+    {{ partial "head.html" . }}
+  </head>
+  <body>
+    <header>
+      <h1>{{ .Site.Title }}</h1>
+      <p class="intro">{{ .Site.Params.intro }}</p>
+    </header>
+    <main>
+      <section class="toolbar">
+        <input id="search" class="search" type="search" placeholder="Filter by component, state, or tag" aria-label="Filter snapshots" />
+        <div class="meta">
+          {{ if $snapshots }}
+            Showing <strong id="visible-count">{{ len $snapshots }}</strong> of {{ len $snapshots }} snapshots{{ with $generated }}, generated at {{ . }}{{ end }}.
+          {{ else }}
+            No snapshots were found in this build. Add PNG files to the snapshot directory to populate the catalog.
+          {{ end }}
+        </div>
+      </section>
+      <section id="grid" class="grid" aria-live="polite">
+        {{ if $snapshots }}
+          {{ range $snapshots }}
+            <article class="card" data-title="{{ .title | lower }}" data-tags="{{ delimit .tags "," }}">
+              <div class="frame">
+                <img src="{{ printf "%s%s" (relURL "snapshots/") .file }}" alt="{{ .title }}" loading="lazy" />
+              </div>
+              <h2>{{ .title }}</h2>
+              {{ with .tags }}
+                <div class="tags">
+                  {{ range . }}
+                    <span class="tag">{{ . }}</span>
+                  {{ end }}
+                </div>
+              {{ end }}
+            </article>
+          {{ end }}
+        {{ else }}
+          <p class="empty">No snapshot images were provided.</p>
+        {{ end }}
+      </section>
+    </main>
+    <footer>
+      Built with Hugo. Assets are copied from the snapshot test output.
+    </footer>
+    {{ if $snapshots }}
+      <script>
+        const dataset = {{ $snapshots | jsonify }};
+        const grid = document.getElementById('grid');
+        const searchInput = document.getElementById('search');
+        const countEl = document.getElementById('visible-count');
+
+        function matches(query, item) {
+          if (!query) return true;
+          const haystack = `${item.title} ${item.tags.join(' ')}`.toLowerCase();
+          return haystack.includes(query);
+        }
+
+        function render(items) {
+          grid.innerHTML = '';
+          if (!items.length) {
+            const empty = document.createElement('p');
+            empty.className = 'empty';
+            empty.textContent = 'No snapshots match your search.';
+            grid.appendChild(empty);
+            return;
+          }
+
+          const fragment = document.createDocumentFragment();
+          for (const item of items) {
+            const article = document.createElement('article');
+            article.className = 'card';
+            article.dataset.title = item.title.toLowerCase();
+            article.dataset.tags = item.tags.join(',');
+
+            const frame = document.createElement('div');
+            frame.className = 'frame';
+            const img = document.createElement('img');
+            img.src = `${'{{ relURL "snapshots/" }}'}${item.file}`;
+            img.alt = item.title;
+            img.loading = 'lazy';
+            frame.appendChild(img);
+            article.appendChild(frame);
+
+            const title = document.createElement('h2');
+            title.textContent = item.title;
+            article.appendChild(title);
+
+            if (item.tags.length) {
+              const tags = document.createElement('div');
+              tags.className = 'tags';
+              for (const tag of item.tags) {
+                const pill = document.createElement('span');
+                pill.className = 'tag';
+                pill.textContent = tag;
+                tags.appendChild(pill);
+              }
+              article.appendChild(tags);
+            }
+
+            fragment.appendChild(article);
+          }
+          grid.appendChild(fragment);
+        }
+
+        function handleSearch(event) {
+          const query = event.target.value.trim().toLowerCase();
+          const filtered = dataset.filter((item) => matches(query, item));
+          render(filtered);
+          if (countEl) {
+            countEl.textContent = filtered.length.toString();
+          }
+        }
+
+        searchInput?.addEventListener('input', handleSearch);
+      </script>
+    {{ end }}
+  </body>
+</html>
