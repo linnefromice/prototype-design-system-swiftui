@@ -107,257 +107,150 @@ public struct SelectBox<T: Hashable>: View {
     }
 }
 
-#Preview {
+#Preview("SelectBox - Default") {
     @Previewable @State var selectedOption1 = "オプション1"
     @Previewable @State var selectedOption2 = "オプション1"
     @Previewable @State var selectedOption3 = "オプション1"
 
     let options = ["オプション1", "オプション2", "オプション3", "オプション4"]
 
-    ScrollView(.horizontal, showsIndicators: true) {
-        VStack(spacing: 40) {
-            VStack(spacing: 24) {
-                HStack(spacing: 20) {
-                    Text("Default")
-                        .frame(width: 100, alignment: .trailing)
-                        .font(.caption)
+    VStack(alignment: .leading, spacing: 24) {
+        Text("SelectBox - Default").font(.title2.bold())
 
-                    SelectBox(
-                        selection: $selectedOption1,
-                        options: options,
-                        placeholder: "選択してください"
-                    )
-                    .frame(width: 200)
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 200").font(.caption).foregroundColor(.secondary)
+            SelectBox(selection: $selectedOption1, options: options, placeholder: "選択してください").frame(width: 200)
+        }
 
-                    SelectBox(
-                        selection: $selectedOption2,
-                        options: options,
-                        placeholder: "選択してください"
-                    )
-                    .frame(width: 300)
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 300").font(.caption).foregroundColor(.secondary)
+            SelectBox(selection: $selectedOption2, options: options, placeholder: "選択してください").frame(width: 300)
+        }
 
-                    SelectBox(
-                        selection: $selectedOption3,
-                        options: options,
-                        placeholder: "選択してください"
-                    )
-                    .frame(width: 150)
-                }
-
-                HStack(spacing: 20) {
-                    Text("Default : hover")
-                        .frame(width: 100, alignment: .trailing)
-                        .font(.caption)
-
-                    SelectBox(
-                        selection: $selectedOption1,
-                        options: options,
-                        placeholder: "選択してください"
-                    )
-                    .frame(width: 200)
-
-                    SelectBox(
-                        selection: $selectedOption2,
-                        options: options,
-                        placeholder: "選択してください"
-                    )
-                    .frame(width: 300)
-
-                    SelectBox(
-                        selection: $selectedOption3,
-                        options: options,
-                        placeholder: "選択してください"
-                    )
-                    .frame(width: 150)
-                }
-
-                HStack(spacing: 20) {
-                    Text("Default : focus")
-                        .frame(width: 100, alignment: .trailing)
-                        .font(.caption)
-
-                    SelectBox(
-                        selection: $selectedOption1,
-                        options: options,
-                        placeholder: "選択してください",
-                        isFocused: true
-                    )
-                    .frame(width: 200)
-
-                    SelectBox(
-                        selection: $selectedOption2,
-                        options: options,
-                        placeholder: "選択してください",
-                        isFocused: true
-                    )
-                    .frame(width: 300)
-
-                    SelectBox(
-                        selection: $selectedOption3,
-                        options: options,
-                        placeholder: "選択してください",
-                        isFocused: true
-                    )
-                    .frame(width: 150)
-                }
-
-                HStack(alignment: .top, spacing: 20) {
-                    Text("Error")
-                        .frame(width: 100, alignment: .trailing)
-                        .font(.caption)
-
-                    SelectBox(
-                        selection: $selectedOption1,
-                        options: options,
-                        placeholder: "選択してください",
-                        error: "エラーテキストが入ります。"
-                    )
-                    .frame(width: 200)
-
-                    SelectBox(
-                        selection: $selectedOption2,
-                        options: options,
-                        placeholder: "選択してください",
-                        error: "エラーテキストが入ります。"
-                    )
-                    .frame(width: 300)
-
-                    SelectBox(
-                        selection: $selectedOption3,
-                        options: options,
-                        placeholder: "選択してください",
-                        error: "エラーテキストが入ります。"
-                    )
-                    .frame(width: 150)
-                }
-
-                HStack(alignment: .top, spacing: 20) {
-                    Text("Error : hover")
-                        .frame(width: 100, alignment: .trailing)
-                        .font(.caption)
-
-                    SelectBox(
-                        selection: $selectedOption1,
-                        options: options,
-                        placeholder: "選択してください",
-                        error: "エラーテキストが入ります。"
-                    )
-                    .frame(width: 200)
-
-                    SelectBox(
-                        selection: $selectedOption2,
-                        options: options,
-                        placeholder: "選択してください",
-                        error: "エラーテキストが入ります。"
-                    )
-                    .frame(width: 300)
-
-                    SelectBox(
-                        selection: $selectedOption3,
-                        options: options,
-                        placeholder: "選択してください",
-                        error: "エラーテキストが入ります。"
-                    )
-                    .frame(width: 150)
-                }
-
-                HStack(alignment: .top, spacing: 20) {
-                    Text("Error : focus")
-                        .frame(width: 100, alignment: .trailing)
-                        .font(.caption)
-
-                    SelectBox(
-                        selection: $selectedOption1,
-                        options: options,
-                        placeholder: "選択してください",
-                        isFocused: true,
-                        error: "エラーテキストが入ります。"
-                    )
-                    .frame(width: 200)
-
-                    SelectBox(
-                        selection: $selectedOption2,
-                        options: options,
-                        placeholder: "選択してください",
-                        isFocused: true,
-                        error: "エラーテキストが入ります。"
-                    )
-                    .frame(width: 300)
-
-                    SelectBox(
-                        selection: $selectedOption3,
-                        options: options,
-                        placeholder: "選択してください",
-                        isFocused: true,
-                        error: "エラーテキストが入ります。"
-                    )
-                    .frame(width: 150)
-                }
-
-                HStack(spacing: 20) {
-                    Text("Disabled")
-                        .frame(width: 100, alignment: .trailing)
-                        .font(.caption)
-
-                    SelectBox(
-                        selection: $selectedOption1,
-                        options: options,
-                        placeholder: "選択してください",
-                        isDisabled: true
-                    )
-                    .frame(width: 200)
-
-                    SelectBox(
-                        selection: $selectedOption2,
-                        options: options,
-                        placeholder: "選択してください",
-                        isDisabled: true
-                    )
-                    .frame(width: 300)
-
-                    SelectBox(
-                        selection: $selectedOption3,
-                        options: options,
-                        placeholder: "選択してください",
-                        isDisabled: true
-                    )
-                    .frame(width: 150)
-                }
-
-                HStack(spacing: 20) {
-                    Text("Disabled : focus")
-                        .frame(width: 100, alignment: .trailing)
-                        .font(.caption)
-
-                    SelectBox(
-                        selection: $selectedOption1,
-                        options: options,
-                        placeholder: "選択してください",
-                        isFocused: true,
-                        isDisabled: true
-                    )
-                    .frame(width: 200)
-
-                    SelectBox(
-                        selection: $selectedOption2,
-                        options: options,
-                        placeholder: "選択してください",
-                        isFocused: true,
-                        isDisabled: true
-                    )
-                    .frame(width: 300)
-
-                    SelectBox(
-                        selection: $selectedOption3,
-                        options: options,
-                        placeholder: "選択してください",
-                        isFocused: true,
-                        isDisabled: true
-                    )
-                    .frame(width: 150)
-                }
-            }
-            .padding()
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 150").font(.caption).foregroundColor(.secondary)
+            SelectBox(selection: $selectedOption3, options: options, placeholder: "選択してください").frame(width: 150)
         }
     }
+    .padding()
+}
+
+#Preview("SelectBox - Focus") {
+    @Previewable @State var selectedOption1 = "オプション1"
+    @Previewable @State var selectedOption2 = "オプション1"
+    @Previewable @State var selectedOption3 = "オプション1"
+
+    let options = ["オプション1", "オプション2", "オプション3", "オプション4"]
+
+    VStack(alignment: .leading, spacing: 24) {
+        Text("SelectBox - Focus").font(.title2.bold())
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 200").font(.caption).foregroundColor(.secondary)
+            SelectBox(selection: $selectedOption1, options: options, placeholder: "選択してください", isFocused: true).frame(width: 200)
+        }
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 300").font(.caption).foregroundColor(.secondary)
+            SelectBox(selection: $selectedOption2, options: options, placeholder: "選択してください", isFocused: true).frame(width: 300)
+        }
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 150").font(.caption).foregroundColor(.secondary)
+            SelectBox(selection: $selectedOption3, options: options, placeholder: "選択してください", isFocused: true).frame(width: 150)
+        }
+    }
+    .padding()
+}
+
+#Preview("SelectBox - Error") {
+    @Previewable @State var selectedOption1 = "オプション1"
+    @Previewable @State var selectedOption2 = "オプション1"
+    @Previewable @State var selectedOption3 = "オプション1"
+
+    let options = ["オプション1", "オプション2", "オプション3", "オプション4"]
+
+    VStack(alignment: .leading, spacing: 24) {
+        Text("SelectBox - Error").font(.title2.bold())
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 200").font(.caption).foregroundColor(.secondary)
+            SelectBox(selection: $selectedOption1, options: options, placeholder: "選択してください", error: "エラーテキストが入ります。").frame(width: 200)
+        }
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 300").font(.caption).foregroundColor(.secondary)
+            SelectBox(selection: $selectedOption2, options: options, placeholder: "選択してください", error: "エラーテキストが入ります。").frame(width: 300)
+        }
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 150").font(.caption).foregroundColor(.secondary)
+            SelectBox(selection: $selectedOption3, options: options, placeholder: "選択してください", error: "エラーテキストが入ります。").frame(width: 150)
+        }
+
+        Divider()
+        Text("Error + Focus").font(.caption.bold())
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 200").font(.caption).foregroundColor(.secondary)
+            SelectBox(selection: $selectedOption1, options: options, placeholder: "選択してください", isFocused: true, error: "エラーテキストが入ります。").frame(width: 200)
+        }
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 300").font(.caption).foregroundColor(.secondary)
+            SelectBox(selection: $selectedOption2, options: options, placeholder: "選択してください", isFocused: true, error: "エラーテキストが入ります。").frame(width: 300)
+        }
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 150").font(.caption).foregroundColor(.secondary)
+            SelectBox(selection: $selectedOption3, options: options, placeholder: "選択してください", isFocused: true, error: "エラーテキストが入ります。").frame(width: 150)
+        }
+    }
+    .padding()
+}
+
+#Preview("SelectBox - Disabled") {
+    @Previewable @State var selectedOption1 = "オプション1"
+    @Previewable @State var selectedOption2 = "オプション1"
+    @Previewable @State var selectedOption3 = "オプション1"
+
+    let options = ["オプション1", "オプション2", "オプション3", "オプション4"]
+
+    VStack(alignment: .leading, spacing: 24) {
+        Text("SelectBox - Disabled").font(.title2.bold())
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 200").font(.caption).foregroundColor(.secondary)
+            SelectBox(selection: $selectedOption1, options: options, placeholder: "選択してください", isDisabled: true).frame(width: 200)
+        }
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 300").font(.caption).foregroundColor(.secondary)
+            SelectBox(selection: $selectedOption2, options: options, placeholder: "選択してください", isDisabled: true).frame(width: 300)
+        }
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 150").font(.caption).foregroundColor(.secondary)
+            SelectBox(selection: $selectedOption3, options: options, placeholder: "選択してください", isDisabled: true).frame(width: 150)
+        }
+
+        Divider()
+        Text("Disabled + Focus").font(.caption.bold())
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 200").font(.caption).foregroundColor(.secondary)
+            SelectBox(selection: $selectedOption1, options: options, placeholder: "選択してください", isFocused: true, isDisabled: true).frame(width: 200)
+        }
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 300").font(.caption).foregroundColor(.secondary)
+            SelectBox(selection: $selectedOption2, options: options, placeholder: "選択してください", isFocused: true, isDisabled: true).frame(width: 300)
+        }
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 150").font(.caption).foregroundColor(.secondary)
+            SelectBox(selection: $selectedOption3, options: options, placeholder: "選択してください", isFocused: true, isDisabled: true).frame(width: 150)
+        }
+    }
+    .padding()
 }

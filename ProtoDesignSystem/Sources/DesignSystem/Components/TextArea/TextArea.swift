@@ -163,163 +163,81 @@ public struct TextArea: View {
     }
 }
 
-#Preview {
-    ScrollView(.vertical, showsIndicators: true) {
-        VStack(spacing: 40) {
-            VStack(spacing: 24) {
-                // Default
-                HStack(alignment: .top, spacing: 20) {
-                    Text("Default")
-                        .frame(width: 120, alignment: .trailing)
-                        .font(.caption)
+#Preview("TextArea - Default") {
+    VStack(alignment: .leading, spacing: 24) {
+        Text("TextArea - Default").font(.title2.bold())
 
-                    TextArea(
-                        .constant(""),
-                        placeholder: "プレースホルダー",
-                        maxLength: 100
-                    )
-                    .frame(width: 300)
-                }
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Empty").font(.caption).foregroundColor(.secondary)
+            TextArea(.constant(""), placeholder: "プレースホルダー", maxLength: 100).frame(width: 300)
+        }
 
-                // Default : hover
-                HStack(alignment: .top, spacing: 20) {
-                    Text("Default : hover")
-                        .frame(width: 120, alignment: .trailing)
-                        .font(.caption)
-
-                    TextArea(
-                        .constant(""),
-                        placeholder: "プレースホルダー",
-                        maxLength: 100
-                    )
-                    .frame(width: 300)
-                }
-
-                // Default : focus
-                HStack(alignment: .top, spacing: 20) {
-                    Text("Default : focus")
-                        .frame(width: 120, alignment: .trailing)
-                        .font(.caption)
-
-                    TextArea(
-                        .constant(""),
-                        placeholder: "プレースホルダー",
-                        maxLength: 100,
-                        isFocused: true
-                    )
-                    .frame(width: 300)
-                }
-
-                // Error
-                HStack(alignment: .top, spacing: 20) {
-                    Text("Error")
-                        .frame(width: 120, alignment: .trailing)
-                        .font(.caption)
-
-                    TextArea(
-                        .constant("誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った"),
-                        placeholder: "プレースホルダー",
-                        maxLength: 100,
-                        error: "エラーテキストが入ります。"
-                    )
-                    .frame(width: 300)
-                }
-
-                // Error : hover
-                HStack(alignment: .top, spacing: 20) {
-                    Text("Error : hover")
-                        .frame(width: 120, alignment: .trailing)
-                        .font(.caption)
-
-                    TextArea(
-                        .constant("誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った"),
-                        placeholder: "プレースホルダー",
-                        maxLength: 100,
-                        error: "エラーテキストが入ります。"
-                    )
-                    .frame(width: 300)
-                }
-
-                // Error : focus
-                HStack(alignment: .top, spacing: 20) {
-                    Text("Error : focus")
-                        .frame(width: 120, alignment: .trailing)
-                        .font(.caption)
-
-                    TextArea(
-                        .constant("誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った"),
-                        placeholder: "プレースホルダー",
-                        maxLength: 100,
-                        isFocused: true,
-                        error: "エラーテキストが入ります。"
-                    )
-                    .frame(width: 300)
-                }
-
-                // Disabled
-                HStack(alignment: .top, spacing: 20) {
-                    Text("Disabled")
-                        .frame(width: 120, alignment: .trailing)
-                        .font(.caption)
-
-                    TextArea(
-                        .constant("入力テキスト"),
-                        placeholder: "プレースホルダー",
-                        maxLength: 100,
-                        isDisabled: true
-                    )
-                    .frame(width: 300)
-                }
-
-                // Disabled : focus
-                HStack(alignment: .top, spacing: 20) {
-                    Text("Disabled : focus")
-                        .frame(width: 120, alignment: .trailing)
-                        .font(.caption)
-
-                    TextArea(
-                        .constant("入力テキスト"),
-                        placeholder: "プレースホルダー",
-                        maxLength: 100,
-                        isFocused: true,
-                        isDisabled: true
-                    )
-                    .frame(width: 300)
-                }
-
-                // Readonly
-                HStack(alignment: .top, spacing: 20) {
-                    Text("Readonly")
-                        .frame(width: 120, alignment: .trailing)
-                        .font(.caption)
-
-                    TextArea(
-                        .constant("入力テキスト"),
-                        placeholder: "プレースホルダー",
-                        maxLength: 100,
-                        isReadonly: true
-                    )
-                    .frame(width: 300)
-                }
-
-                // Readonly : focus
-                HStack(alignment: .top, spacing: 20) {
-                    Text("Readonly : focus")
-                        .frame(width: 120, alignment: .trailing)
-                        .font(.caption)
-
-                    TextArea(
-                        .constant("入力テキスト"),
-                        placeholder: "プレースホルダー",
-                        maxLength: 100,
-                        isFocused: true,
-                        isReadonly: true
-                    )
-                    .frame(width: 300)
-                }
-            }
-            .padding()
+        VStack(alignment: .leading, spacing: 16) {
+            Text("With content").font(.caption).foregroundColor(.secondary)
+            TextArea(.constant("入力テキストです。"), placeholder: "プレースホルダー", maxLength: 100).frame(width: 300)
         }
     }
-    .preferredColorScheme(.light)
+    .padding()
+}
+
+#Preview("TextArea - Focus") {
+    VStack(alignment: .leading, spacing: 24) {
+        Text("TextArea - Focus").font(.title2.bold())
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Empty + Focus").font(.caption).foregroundColor(.secondary)
+            TextArea(.constant(""), placeholder: "プレースホルダー", maxLength: 100, isFocused: true).frame(width: 300)
+        }
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("With content + Focus").font(.caption).foregroundColor(.secondary)
+            TextArea(.constant("入力テキストです。"), placeholder: "プレースホルダー", maxLength: 100, isFocused: true).frame(width: 300)
+        }
+    }
+    .padding()
+}
+
+#Preview("TextArea - Error") {
+    VStack(alignment: .leading, spacing: 24) {
+        Text("TextArea - Error").font(.title2.bold())
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Error").font(.caption).foregroundColor(.secondary)
+            TextArea(
+                .constant("誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った入力内容です。誤った"),
+                placeholder: "プレースホルダー",
+                maxLength: 100,
+                error: "エラーテキストが入ります。"
+            ).frame(width: 300)
+        }
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Error + Focus").font(.caption).foregroundColor(.secondary)
+            TextArea(
+                .constant("誤った入力内容です。誤った入力内容です。"),
+                placeholder: "プレースホルダー",
+                maxLength: 100,
+                isFocused: true,
+                error: "エラーテキストが入ります。"
+            ).frame(width: 300)
+        }
+    }
+    .padding()
+}
+
+#Preview("TextArea - Disabled") {
+    VStack(alignment: .leading, spacing: 24) {
+        Text("TextArea - Disabled").font(.title2.bold())
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Disabled").font(.caption).foregroundColor(.secondary)
+            TextArea(.constant("入力テキストです。"), placeholder: "プレースホルダー", maxLength: 100, isDisabled: true).frame(width: 300)
+        }
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Disabled + Focus").font(.caption).foregroundColor(.secondary)
+            TextArea(.constant("入力テキストです。"), placeholder: "プレースホルダー", maxLength: 100, isFocused: true, isDisabled: true).frame(width: 300)
+        }
+    }
+    .padding()
 }
