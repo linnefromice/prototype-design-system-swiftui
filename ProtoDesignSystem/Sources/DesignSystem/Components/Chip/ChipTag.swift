@@ -299,13 +299,17 @@ import SwiftUI
                 .font(.caption)
                 .foregroundColor(.secondary)
 
-            FlowLayout(spacing: 8) {
-                ChipTag(text: "現行法令", onRemove: {})
-                ChipTag(text: "法令", onRemove: {})
-                ChipTag(text: "勅令", onRemove: {})
-                ChipTag(text: "関連度順", onRemove: {})
-                ChipTag(text: "長いラベル長いラベル", onRemove: {})
-                ChipTag(text: "10件", onRemove: {})
+            VStack(alignment: .leading, spacing: 8) {
+                HStack(spacing: 8) {
+                    ChipTag(text: "現行法令", onRemove: {})
+                    ChipTag(text: "法令", onRemove: {})
+                    ChipTag(text: "勅令", onRemove: {})
+                }
+                HStack(spacing: 8) {
+                    ChipTag(text: "関連度順", onRemove: {})
+                    ChipTag(text: "長いラベル長いラベル", onRemove: {})
+                    ChipTag(text: "10件", onRemove: {})
+                }
             }
         }
     }
