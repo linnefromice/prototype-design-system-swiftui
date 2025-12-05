@@ -344,507 +344,177 @@ public struct RadioGroup: View {
 
 // MARK: - Preview
 
-#Preview {
+#Preview("RadioButton - Basic States") {
+    VStack(alignment: .leading, spacing: 24) {
+        Text("RadioButton - Basic States").font(.title2.bold())
+
+        // Default
+        HStack(spacing: 20) {
+            Text("Default").frame(width: 100, alignment: .trailing).font(.caption)
+            RadioButton(label: "Small", id: "default", selectedId: .constant(""), size: .small)
+            RadioButton(label: "Medium", id: "default", selectedId: .constant(""), size: .medium)
+            RadioButton(label: "Large", id: "default", selectedId: .constant(""), size: .large)
+        }
+
+        // Checked
+        HStack(spacing: 20) {
+            Text("Checked").frame(width: 100, alignment: .trailing).font(.caption)
+            RadioButton(label: "Small", id: "checked", selectedId: .constant("checked"), size: .small)
+            RadioButton(label: "Medium", id: "checked", selectedId: .constant("checked"), size: .medium)
+            RadioButton(label: "Large", id: "checked", selectedId: .constant("checked"), size: .large)
+        }
+    }
+    .padding()
+    .preferredColorScheme(.light)
+}
+
+#Preview("RadioButton - Focus States") {
+    VStack(alignment: .leading, spacing: 24) {
+        Text("RadioButton - Focus States").font(.title2.bold())
+
+        // Default + Focus
+        HStack(spacing: 20) {
+            Text("Default : focus").frame(width: 120, alignment: .trailing).font(.caption)
+            RadioButton(label: "Small", id: "focus", selectedId: .constant(""), size: .small, isFocused: true)
+            RadioButton(label: "Medium", id: "focus", selectedId: .constant(""), size: .medium, isFocused: true)
+            RadioButton(label: "Large", id: "focus", selectedId: .constant(""), size: .large, isFocused: true)
+        }
+
+        // Checked + Focus
+        HStack(spacing: 20) {
+            Text("Checked : focus").frame(width: 120, alignment: .trailing).font(.caption)
+            RadioButton(label: "Small", id: "checked-focus", selectedId: .constant("checked-focus"), size: .small, isFocused: true)
+            RadioButton(label: "Medium", id: "checked-focus", selectedId: .constant("checked-focus"), size: .medium, isFocused: true)
+            RadioButton(label: "Large", id: "checked-focus", selectedId: .constant("checked-focus"), size: .large, isFocused: true)
+        }
+    }
+    .padding()
+    .preferredColorScheme(.light)
+}
+
+#Preview("RadioButton - Error States") {
+    VStack(alignment: .leading, spacing: 24) {
+        Text("RadioButton - Error States").font(.title2.bold())
+
+        // Default Error
+        HStack(spacing: 20) {
+            Text("Default Error").frame(width: 120, alignment: .trailing).font(.caption)
+            RadioButton(label: "Small", id: "error", selectedId: .constant(""), status: .error, size: .small)
+            RadioButton(label: "Medium", id: "error", selectedId: .constant(""), status: .error, size: .medium)
+            RadioButton(label: "Large", id: "error", selectedId: .constant(""), status: .error, size: .large)
+        }
+
+        // Checked Error
+        HStack(spacing: 20) {
+            Text("Checked Error").frame(width: 120, alignment: .trailing).font(.caption)
+            RadioButton(label: "Small", id: "checked-error", selectedId: .constant("checked-error"), status: .error, size: .small)
+            RadioButton(label: "Medium", id: "checked-error", selectedId: .constant("checked-error"), status: .error, size: .medium)
+            RadioButton(label: "Large", id: "checked-error", selectedId: .constant("checked-error"), status: .error, size: .large)
+        }
+
+        // Default Error + Focus
+        HStack(spacing: 20) {
+            Text("Default Error : focus").frame(width: 140, alignment: .trailing).font(.caption)
+            RadioButton(label: "Small", id: "error-focus", selectedId: .constant(""), status: .error, size: .small, isFocused: true)
+            RadioButton(label: "Medium", id: "error-focus", selectedId: .constant(""), status: .error, size: .medium, isFocused: true)
+            RadioButton(label: "Large", id: "error-focus", selectedId: .constant(""), status: .error, size: .large, isFocused: true)
+        }
+
+        // Checked Error + Focus
+        HStack(spacing: 20) {
+            Text("Checked Error : focus").frame(width: 140, alignment: .trailing).font(.caption)
+            RadioButton(label: "Small", id: "checked-error-focus", selectedId: .constant("checked-error-focus"), status: .error, size: .small, isFocused: true)
+            RadioButton(label: "Medium", id: "checked-error-focus", selectedId: .constant("checked-error-focus"), status: .error, size: .medium, isFocused: true)
+            RadioButton(label: "Large", id: "checked-error-focus", selectedId: .constant("checked-error-focus"), status: .error, size: .large, isFocused: true)
+        }
+    }
+    .padding()
+    .preferredColorScheme(.light)
+}
+
+#Preview("RadioButton - Disabled & Groups") {
     ScrollView {
-        VStack(alignment: .leading, spacing: 40) {
-            Text("Radio Button States")
-                .font(.title.bold())
-
+        VStack(alignment: .leading, spacing: 32) {
             VStack(alignment: .leading, spacing: 24) {
-                // Default
-                HStack(spacing: 20) {
-                    Text("Default")
-                        .frame(width: 120, alignment: .trailing)
-                        .font(.caption)
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "default",
-                        selectedId: .constant(""),
-                        size: .small
-                    )
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "default",
-                        selectedId: .constant(""),
-                        size: .medium
-                    )
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "default",
-                        selectedId: .constant(""),
-                        size: .large
-                    )
-                }
-
-                // Checked
-                HStack(spacing: 20) {
-                    Text("Checked")
-                        .frame(width: 120, alignment: .trailing)
-                        .font(.caption)
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "checked",
-                        selectedId: .constant("checked"),
-                        size: .small
-                    )
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "checked",
-                        selectedId: .constant("checked"),
-                        size: .medium
-                    )
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "checked",
-                        selectedId: .constant("checked"),
-                        size: .large
-                    )
-                }
-
-                // Default : focus
-                HStack(spacing: 20) {
-                    Text("Default : focus")
-                        .frame(width: 120, alignment: .trailing)
-                        .font(.caption)
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "focus",
-                        selectedId: .constant(""),
-                        size: .small,
-                        isFocused: true
-                    )
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "focus",
-                        selectedId: .constant(""),
-                        size: .medium,
-                        isFocused: true
-                    )
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "focus",
-                        selectedId: .constant(""),
-                        size: .large,
-                        isFocused: true
-                    )
-                }
-
-                // Checked : focus
-                HStack(spacing: 20) {
-                    Text("Checked : focus")
-                        .frame(width: 120, alignment: .trailing)
-                        .font(.caption)
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "checked-focus",
-                        selectedId: .constant("checked-focus"),
-                        size: .small,
-                        isFocused: true
-                    )
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "checked-focus",
-                        selectedId: .constant("checked-focus"),
-                        size: .medium,
-                        isFocused: true
-                    )
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "checked-focus",
-                        selectedId: .constant("checked-focus"),
-                        size: .large,
-                        isFocused: true
-                    )
-                }
-
-                // Default Error
-                HStack(spacing: 20) {
-                    Text("Default Error")
-                        .frame(width: 120, alignment: .trailing)
-                        .font(.caption)
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "error",
-                        selectedId: .constant(""),
-                        status: .error,
-                        size: .small
-                    )
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "error",
-                        selectedId: .constant(""),
-                        status: .error,
-                        size: .medium
-                    )
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "error",
-                        selectedId: .constant(""),
-                        status: .error,
-                        size: .large
-                    )
-                }
-
-                // Checked Error
-                HStack(spacing: 20) {
-                    Text("Checked Error")
-                        .frame(width: 120, alignment: .trailing)
-                        .font(.caption)
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "checked-error",
-                        selectedId: .constant("checked-error"),
-                        status: .error,
-                        size: .small
-                    )
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "checked-error",
-                        selectedId: .constant("checked-error"),
-                        status: .error,
-                        size: .medium
-                    )
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "checked-error",
-                        selectedId: .constant("checked-error"),
-                        status: .error,
-                        size: .large
-                    )
-                }
-
-                // Default Error : focus
-                HStack(spacing: 20) {
-                    Text("Default Error : focus")
-                        .frame(width: 120, alignment: .trailing)
-                        .font(.caption)
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "error-focus",
-                        selectedId: .constant(""),
-                        status: .error,
-                        size: .small,
-                        isFocused: true
-                    )
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "error-focus",
-                        selectedId: .constant(""),
-                        status: .error,
-                        size: .medium,
-                        isFocused: true
-                    )
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "error-focus",
-                        selectedId: .constant(""),
-                        status: .error,
-                        size: .large,
-                        isFocused: true
-                    )
-                }
-
-                // Checked Error : focus
-                HStack(spacing: 20) {
-                    Text("Checked Error : focus")
-                        .frame(width: 120, alignment: .trailing)
-                        .font(.caption)
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "checked-error-focus",
-                        selectedId: .constant("checked-error-focus"),
-                        status: .error,
-                        size: .small,
-                        isFocused: true
-                    )
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "checked-error-focus",
-                        selectedId: .constant("checked-error-focus"),
-                        status: .error,
-                        size: .medium,
-                        isFocused: true
-                    )
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "checked-error-focus",
-                        selectedId: .constant("checked-error-focus"),
-                        status: .error,
-                        size: .large,
-                        isFocused: true
-                    )
-                }
+                Text("Disabled States").font(.title2.bold())
 
                 // Default Disabled
                 HStack(spacing: 20) {
-                    Text("Default Disabled")
-                        .frame(width: 120, alignment: .trailing)
-                        .font(.caption)
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "disabled",
-                        selectedId: .constant(""),
-                        status: .disabled,
-                        size: .small
-                    )
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "disabled",
-                        selectedId: .constant(""),
-                        status: .disabled,
-                        size: .medium
-                    )
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "disabled",
-                        selectedId: .constant(""),
-                        status: .disabled,
-                        size: .large
-                    )
+                    Text("Default Disabled").frame(width: 130, alignment: .trailing).font(.caption)
+                    RadioButton(label: "Small", id: "disabled", selectedId: .constant(""), status: .disabled, size: .small)
+                    RadioButton(label: "Medium", id: "disabled", selectedId: .constant(""), status: .disabled, size: .medium)
+                    RadioButton(label: "Large", id: "disabled", selectedId: .constant(""), status: .disabled, size: .large)
                 }
 
                 // Checked Disabled
                 HStack(spacing: 20) {
-                    Text("Checked Disabled")
-                        .frame(width: 120, alignment: .trailing)
-                        .font(.caption)
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "checked-disabled",
-                        selectedId: .constant("checked-disabled"),
-                        status: .disabled,
-                        size: .small
-                    )
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "checked-disabled",
-                        selectedId: .constant("checked-disabled"),
-                        status: .disabled,
-                        size: .medium
-                    )
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "checked-disabled",
-                        selectedId: .constant("checked-disabled"),
-                        status: .disabled,
-                        size: .large
-                    )
+                    Text("Checked Disabled").frame(width: 130, alignment: .trailing).font(.caption)
+                    RadioButton(label: "Small", id: "checked-disabled", selectedId: .constant("checked-disabled"), status: .disabled, size: .small)
+                    RadioButton(label: "Medium", id: "checked-disabled", selectedId: .constant("checked-disabled"), status: .disabled, size: .medium)
+                    RadioButton(label: "Large", id: "checked-disabled", selectedId: .constant("checked-disabled"), status: .disabled, size: .large)
                 }
 
-                // Default Disabled : focus
+                // Default Disabled + Focus
                 HStack(spacing: 20) {
-                    Text("Default Disabled : focus")
-                        .frame(width: 120, alignment: .trailing)
-                        .font(.caption)
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "disabled-focus",
-                        selectedId: .constant(""),
-                        status: .disabled,
-                        size: .small,
-                        isFocused: true
-                    )
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "disabled-focus",
-                        selectedId: .constant(""),
-                        status: .disabled,
-                        size: .medium,
-                        isFocused: true
-                    )
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "disabled-focus",
-                        selectedId: .constant(""),
-                        status: .disabled,
-                        size: .large,
-                        isFocused: true
-                    )
+                    Text("Default Disabled : focus").frame(width: 150, alignment: .trailing).font(.caption2)
+                    RadioButton(label: "Small", id: "disabled-focus", selectedId: .constant(""), status: .disabled, size: .small, isFocused: true)
+                    RadioButton(label: "Medium", id: "disabled-focus", selectedId: .constant(""), status: .disabled, size: .medium, isFocused: true)
+                    RadioButton(label: "Large", id: "disabled-focus", selectedId: .constant(""), status: .disabled, size: .large, isFocused: true)
                 }
 
-                // Checked Disabled : focus
+                // Checked Disabled + Focus
                 HStack(spacing: 20) {
-                    Text("Checked Disabled : focus")
-                        .frame(width: 120, alignment: .trailing)
-                        .font(.caption)
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "checked-disabled-focus",
-                        selectedId: .constant("checked-disabled-focus"),
-                        status: .disabled,
-                        size: .small,
-                        isFocused: true
-                    )
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "checked-disabled-focus",
-                        selectedId: .constant("checked-disabled-focus"),
-                        status: .disabled,
-                        size: .medium,
-                        isFocused: true
-                    )
-
-                    RadioButton(
-                        label: "選択肢",
-                        id: "checked-disabled-focus",
-                        selectedId: .constant("checked-disabled-focus"),
-                        status: .disabled,
-                        size: .large,
-                        isFocused: true
-                    )
+                    Text("Checked Disabled : focus").frame(width: 150, alignment: .trailing).font(.caption2)
+                    RadioButton(label: "Small", id: "checked-disabled-focus", selectedId: .constant("checked-disabled-focus"), status: .disabled, size: .small, isFocused: true)
+                    RadioButton(label: "Medium", id: "checked-disabled-focus", selectedId: .constant("checked-disabled-focus"), status: .disabled, size: .medium, isFocused: true)
+                    RadioButton(label: "Large", id: "checked-disabled-focus", selectedId: .constant("checked-disabled-focus"), status: .disabled, size: .large, isFocused: true)
                 }
             }
 
             Divider()
-                .padding(.vertical)
 
-            Text("RadioGroup Layouts")
-                .font(.title.bold())
+            VStack(alignment: .leading, spacing: 24) {
+                Text("RadioGroup Layouts").font(.title2.bold())
 
-            VStack(alignment: .leading, spacing: 40) {
-                // Inline - Small
+                // Inline Layout
                 RadioGroup(
-                    title: "ラベル",
-                    required: true,
-                    supportText: "サポートテキスト",
+                    title: "Inline - Small",
                     layout: .inline,
                     items: [
-                        RadioItem(id: "1", label: "選択肢"),
-                        RadioItem(id: "2", label: "選択肢"),
-                        RadioItem(id: "3", label: "選択肢"),
-                        RadioItem(id: "4", label: "選択肢"),
-                        RadioItem(id: "5", label: "選択肢"),
-                        RadioItem(id: "6", label: "選択肢")
+                        RadioItem(id: "1", label: "選択肢1"),
+                        RadioItem(id: "2", label: "選択肢2"),
+                        RadioItem(id: "3", label: "選択肢3")
                     ],
                     size: .small,
-                    selectedId: .constant("")
-                )
-
-                // Inline - Medium with error
-                RadioGroup(
-                    title: "ラベル",
-                    required: true,
-                    supportText: "サポートテキスト",
-                    errorText: "エラーテキストが入ります。",
-                    layout: .inline,
-                    items: [
-                        RadioItem(id: "1", label: "選択肢"),
-                        RadioItem(id: "2", label: "選択肢"),
-                        RadioItem(id: "3", label: "選択肢"),
-                        RadioItem(id: "4", label: "選択肢"),
-                        RadioItem(id: "5", label: "選択肢"),
-                        RadioItem(id: "6", label: "選択肢")
-                    ],
-                    size: .medium,
-                    selectedId: .constant("")
-                )
-
-                // Inline - Large
-                RadioGroup(
-                    title: "ラベル",
-                    required: true,
-                    supportText: "サポートテキスト",
-                    errorText: "エラーテキストが入ります。",
-                    layout: .inline,
-                    items: [
-                        RadioItem(id: "1", label: "選択肢"),
-                        RadioItem(id: "2", label: "選択肢"),
-                        RadioItem(id: "3", label: "選択肢"),
-                        RadioItem(id: "4", label: "選択肢"),
-                        RadioItem(id: "5", label: "選択肢"),
-                        RadioItem(id: "6", label: "選択肢")
-                    ],
-                    size: .large,
-                    selectedId: .constant("")
-                )
-
-                Divider()
-
-                // Stacked - Medium
-                RadioGroup(
-                    title: "ラベル",
-                    required: true,
-                    supportText: "サポートテキスト",
-                    layout: .stacked,
-                    items: [
-                        RadioItem(id: "1", label: "選択肢"),
-                        RadioItem(id: "2", label: "選択肢"),
-                        RadioItem(id: "3", label: "選択肢"),
-                        RadioItem(id: "4", label: "選択肢"),
-                        RadioItem(id: "5", label: "選択肢"),
-                        RadioItem(id: "6", label: "選択肢")
-                    ],
-                    size: .medium,
                     selectedId: .constant("1")
                 )
 
-                // Stacked - Large with error
+                // Stacked Layout
                 RadioGroup(
-                    title: "ラベル",
-                    required: true,
+                    title: "Stacked - Medium",
                     supportText: "サポートテキスト",
-                    errorText: "エラーテキストが入ります。",
                     layout: .stacked,
                     items: [
-                        RadioItem(id: "1", label: "選択肢"),
-                        RadioItem(id: "2", label: "選択肢"),
-                        RadioItem(id: "3", label: "選択肢"),
-                        RadioItem(id: "4", label: "選択肢"),
-                        RadioItem(id: "5", label: "選択肢"),
-                        RadioItem(id: "6", label: "選択肢"),
-                        RadioItem(id: "7", label: "選択肢")
-                    ],
-                    size: .large,
-                    selectedId: .constant("")
-                )
-
-                Divider()
-
-                // Units
-                RadioGroup(
-                    layout: .units,
-                    items: [
-                        RadioItem(id: "1", label: "選択肢"),
-                        RadioItem(id: "2", label: "選択肢"),
-                        RadioItem(id: "3", label: "選択肢")
+                        RadioItem(id: "1", label: "選択肢1"),
+                        RadioItem(id: "2", label: "選択肢2"),
+                        RadioItem(id: "3", label: "選択肢3")
                     ],
                     size: .medium,
                     selectedId: .constant("2")
+                )
+
+                // Units Layout
+                RadioGroup(
+                    title: "Units - Large",
+                    errorText: "エラーテキストが入ります",
+                    layout: .units,
+                    items: [
+                        RadioItem(id: "1", label: "選択肢1"),
+                        RadioItem(id: "2", label: "選択肢2"),
+                        RadioItem(id: "3", label: "選択肢3")
+                    ],
+                    size: .large,
+                    selectedId: .constant("")
                 )
             }
         }

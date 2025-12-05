@@ -202,206 +202,153 @@ public struct ChipTag: View {
 
 // MARK: - Preview
 
-#Preview {
-    ScrollView {
-        VStack(alignment: .leading, spacing: 32) {
-            // 各状態の表示
-            VStack(alignment: .leading, spacing: 16) {
-                Text("ChipTag States")
-                    .font(.title2.bold())
+import SwiftUI
 
-                VStack(alignment: .leading, spacing: 12) {
-                    Text("Default")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
+// MARK: - ChipTag Previews - Split by State and Use Case
+
+#Preview("ChipTag - States") {
+    VStack(alignment: .leading, spacing: 16) {
+        Text("ChipTag States")
+            .font(.headline)
+
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Default")
+                .font(.caption)
+                .foregroundColor(.secondary)
+            ChipTag(
+                text: "ラベル",
+                color: .blue,
+                state: .default,
+                onRemove: {}
+            )
+
+            Text("Hover")
+                .font(.caption)
+                .foregroundColor(.secondary)
+            ChipTag(
+                text: "ラベル",
+                color: .blue,
+                state: .hover,
+                onRemove: {}
+            )
+
+            Text("Active")
+                .font(.caption)
+                .foregroundColor(.secondary)
+            ChipTag(
+                text: "ラベル",
+                color: .blue,
+                state: .active,
+                onRemove: {}
+            )
+
+            Text("Focus")
+                .font(.caption)
+                .foregroundColor(.secondary)
+            ChipTag(
+                text: "ラベル",
+                color: .blue,
+                state: .focus,
+                onRemove: {}
+            )
+        }
+    }
+    .padding()
+}
+
+#Preview("ChipTag - Color Variations") {
+    VStack(alignment: .leading, spacing: 16) {
+        Text("Color Variations")
+            .font(.headline)
+
+        VStack(alignment: .leading, spacing: 12) {
+            ForEach(ChipTagColor.allCases, id: \.self) { color in
+                HStack(spacing: 8) {
                     ChipTag(
-                        text: "ラベル",
-                        color: .blue,
+                        text: "Default",
+                        color: color,
                         state: .default,
                         onRemove: {}
                     )
-
-                    Text("Hover")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
                     ChipTag(
-                        text: "ラベル",
-                        color: .blue,
+                        text: "Hover",
+                        color: color,
                         state: .hover,
                         onRemove: {}
                     )
-
-                    Text("Active")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
                     ChipTag(
-                        text: "ラベル",
-                        color: .blue,
+                        text: "Active",
+                        color: color,
                         state: .active,
                         onRemove: {}
                     )
-
-                    Text("Focus")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    ChipTag(
-                        text: "ラベル",
-                        color: .blue,
-                        state: .focus,
-                        onRemove: {}
-                    )
-                }
-            }
-
-            Divider()
-
-            // カラーバリエーション
-            VStack(alignment: .leading, spacing: 16) {
-                Text("Color Variations")
-                    .font(.title2.bold())
-
-                VStack(alignment: .leading, spacing: 12) {
-                    ForEach(ChipTagColor.allCases, id: \.self) { color in
-                        HStack(spacing: 8) {
-                            ChipTag(
-                                text: "Default",
-                                color: color,
-                                state: .default,
-                                onRemove: {}
-                            )
-                            ChipTag(
-                                text: "Hover",
-                                color: color,
-                                state: .hover,
-                                onRemove: {}
-                            )
-                            ChipTag(
-                                text: "Active",
-                                color: color,
-                                state: .active,
-                                onRemove: {}
-                            )
-                        }
-                    }
-                }
-            }
-
-            Divider()
-
-            // 実用例: 検索条件
-            VStack(alignment: .leading, spacing: 16) {
-                Text("実用例: サイト内検索の条件")
-                    .font(.title2.bold())
-
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("検索条件：")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-
-                    FlowLayout(spacing: 8) {
-                        ChipTag(text: "現行法令", onRemove: {})
-                        ChipTag(text: "法令", onRemove: {})
-                        ChipTag(text: "勅令", onRemove: {})
-                        ChipTag(text: "関連度順", onRemove: {})
-                        ChipTag(text: "長いラベル長いラベル長いラベル長いラベル", onRemove: {})
-                        ChipTag(text: "10件", onRemove: {})
-                        ChipTag(text: "長いラベル", onRemove: {})
-                    }
-                }
-            }
-
-            Divider()
-
-            // 実用例: ユーザータグ
-            VStack(alignment: .leading, spacing: 16) {
-                Text("実用例: 宛先のユーザータグ")
-                    .font(.title2.bold())
-
-                VStack(alignment: .leading, spacing: 12) {
-                    Text("宛先")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-
-                    HStack(spacing: 8) {
-                        ChipTag(
-                            text: "デジ田 太郎",
-                            customIcon: Image(systemName: "person.circle.fill"),
-                            onRemove: {}
-                        )
-                        ChipTag(
-                            text: "デジ演 実",
-                            customIcon: Image(systemName: "person.circle.fill"),
-                            onRemove: {}
-                        )
-                    }
-
-                    Text("CC")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-
-                    ChipTag(
-                        text: "デジ山 ひかり",
-                        customIcon: Image(systemName: "person.circle.fill"),
-                        onRemove: {}
-                    )
                 }
             }
         }
-        .padding()
     }
-    .preferredColorScheme(.light)
+    .padding()
 }
 
-// MARK: - FlowLayout Helper
+#Preview("ChipTag - Search Conditions") {
+    VStack(alignment: .leading, spacing: 16) {
+        Text("実用例: サイト内検索の条件")
+            .font(.headline)
 
-/// 複数のChipTagを自動で折り返し表示するためのレイアウト
-public struct FlowLayout: Layout {
-    var spacing: CGFloat = 8
+        VStack(alignment: .leading, spacing: 8) {
+            Text("検索条件：")
+                .font(.caption)
+                .foregroundColor(.secondary)
 
-    public func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
-        let result = FlowResult(
-            in: proposal.replacingUnspecifiedDimensions().width,
-            subviews: subviews,
-            spacing: spacing
-        )
-        return result.size
-    }
-
-    public func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
-        let result = FlowResult(
-            in: bounds.width,
-            subviews: subviews,
-            spacing: spacing
-        )
-        for (index, subview) in subviews.enumerated() {
-            subview.place(at: CGPoint(x: bounds.minX + result.positions[index].x, y: bounds.minY + result.positions[index].y), proposal: .unspecified)
+            VStack(alignment: .leading, spacing: 8) {
+                HStack(spacing: 8) {
+                    ChipTag(text: "現行法令", onRemove: {})
+                    ChipTag(text: "法令", onRemove: {})
+                    ChipTag(text: "勅令", onRemove: {})
+                }
+                HStack(spacing: 8) {
+                    ChipTag(text: "関連度順", onRemove: {})
+                    ChipTag(text: "長いラベル長いラベル", onRemove: {})
+                    ChipTag(text: "10件", onRemove: {})
+                }
+            }
         }
     }
+    .padding()
+}
 
-    struct FlowResult {
-        var size: CGSize = .zero
-        var positions: [CGPoint] = []
+#Preview("ChipTag - User Tags") {
+    VStack(alignment: .leading, spacing: 16) {
+        Text("実用例: 宛先のユーザータグ")
+            .font(.headline)
 
-        init(in maxWidth: CGFloat, subviews: Subviews, spacing: CGFloat) {
-            var x: CGFloat = 0
-            var y: CGFloat = 0
-            var lineHeight: CGFloat = 0
+        VStack(alignment: .leading, spacing: 12) {
+            Text("宛先")
+                .font(.caption)
+                .foregroundColor(.secondary)
 
-            for subview in subviews {
-                let size = subview.sizeThatFits(.unspecified)
-
-                if x + size.width > maxWidth && x > 0 {
-                    x = 0
-                    y += lineHeight + spacing
-                    lineHeight = 0
-                }
-
-                positions.append(CGPoint(x: x, y: y))
-                lineHeight = max(lineHeight, size.height)
-                x += size.width + spacing
+            HStack(spacing: 8) {
+                ChipTag(
+                    text: "デジ田 太郎",
+                    customIcon: Image(systemName: "person.circle.fill"),
+                    onRemove: {}
+                )
+                ChipTag(
+                    text: "デジ演 実",
+                    customIcon: Image(systemName: "person.circle.fill"),
+                    onRemove: {}
+                )
             }
 
-            self.size = CGSize(width: maxWidth, height: y + lineHeight)
+            Text("CC")
+                .font(.caption)
+                .foregroundColor(.secondary)
+
+            ChipTag(
+                text: "デジ山 ひかり",
+                customIcon: Image(systemName: "person.circle.fill"),
+                onRemove: {}
+            )
         }
     }
+    .padding()
 }

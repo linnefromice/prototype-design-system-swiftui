@@ -71,244 +71,132 @@ public struct InputText: View {
     }
 }
 
-#Preview {
-    ScrollView(.horizontal, showsIndicators: true) {
-        VStack(spacing: 40) {
-            // VStack(alignment: .leading, spacing: 8) {
-            //     Text("Labels")
-            //         .font(.caption)
-            //         .foregroundColor(.secondary)
+#Preview("InputText - Default") {
+    VStack(alignment: .leading, spacing: 20) {
+        Text("InputText - Default").font(.title2.bold())
 
-            //     HStack(spacing: 20) {
-            //         Text("Large")
-            //             .frame(width: 80, alignment: .leading)
-            //         Text("Medium")
-            //             .frame(width: 200, alignment: .leading)
-            //         Text("Small")
-            //             .frame(width: 150, alignment: .leading)
-            //     }
-            //     .font(.caption2)
-            //     .foregroundColor(.secondary)
-            // }
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 200").font(.caption).foregroundColor(.secondary)
+            InputText(.constant(""), placeholder: "プレースホルダー").frame(width: 200)
+            InputText(.constant("入力テキスト"), placeholder: "プレースホルダー").frame(width: 200)
+        }
 
-            VStack(spacing: 24) {
-                HStack(spacing: 20) {
-                    Text("Default")
-                        .frame(width: 80, alignment: .trailing)
-                        .font(.caption)
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 300").font(.caption).foregroundColor(.secondary)
+            InputText(.constant(""), placeholder: "プレースホルダー").frame(width: 300)
+            InputText(.constant("入力テキスト"), placeholder: "プレースホルダー").frame(width: 300)
+        }
 
-                    InputText(
-                        .constant("入力テキスト"),
-                        placeholder: "プレースホルダー"
-                    )
-                    .frame(width: 200)
-
-                    InputText(
-                        .constant("入力テキスト"),
-                        placeholder: "プレースホルダー"
-                    )
-                    .frame(width: 300)
-
-                    InputText(
-                        .constant("入力テキスト"),
-                        placeholder: "プレースホルダー"
-                    )
-                    .frame(width: 150)
-                }
-
-                HStack(spacing: 20) {
-                    Text("Default : hover")
-                        .frame(width: 80, alignment: .trailing)
-                        .font(.caption)
-
-                    InputText(
-                        .constant("入力テキスト"),
-                        placeholder: "プレースホルダー"
-                    )
-                    .frame(width: 200)
-
-                    InputText(
-                        .constant("入力テキスト"),
-                        placeholder: "プレースホルダー"
-                    )
-                    .frame(width: 300)
-
-                    InputText(
-                        .constant("入力テキスト"),
-                        placeholder: "プレースホルダー"
-                    )
-                    .frame(width: 150)
-                }
-
-                HStack(spacing: 20) {
-                    Text("Default : focus")
-                        .frame(width: 80, alignment: .trailing)
-                        .font(.caption)
-
-                    InputText(
-                        .constant("入力テキスト"),
-                        placeholder: "プレースホルダー",
-                        isFocused: true
-                    )
-                    .frame(width: 200)
-
-                    InputText(
-                        .constant("入力テキスト"),
-                        placeholder: "プレースホルダー",
-                        isFocused: true
-                    )
-                    .frame(width: 300)
-
-                    InputText(
-                        .constant("入力テキスト"),
-                        placeholder: "プレースホルダー",
-                        isFocused: true
-                    )
-                    .frame(width: 150)
-                }
-
-                HStack(alignment: .top, spacing: 20) {
-                    Text("Error")
-                        .frame(width: 80, alignment: .trailing)
-                        .font(.caption)
-
-                    InputText(
-                        .constant("誤った入力内容"),
-                        placeholder: "プレースホルダー",
-                        error: "エラーテキストが入ります。"
-                    )
-                    .frame(width: 200)
-
-                    InputText(
-                        .constant("誤った入力内容"),
-                        placeholder: "プレースホルダー",
-                        error: "エラーテキストが入ります。"
-                    )
-                    .frame(width: 300)
-
-                    InputText(
-                        .constant("誤った入力内容"),
-                        placeholder: "プレースホルダー",
-                        error: "エラーテキストが入ります。"
-                    )
-                    .frame(width: 150)
-                }
-
-                HStack(alignment: .top, spacing: 20) {
-                    Text("Error : hover")
-                        .frame(width: 80, alignment: .trailing)
-                        .font(.caption)
-
-                    InputText(
-                        .constant("誤った入力内容"),
-                        placeholder: "プレースホルダー",
-                        error: "エラーテキストが入ります。"
-                    )
-                    .frame(width: 200)
-
-                    InputText(
-                        .constant("誤った入力内容"),
-                        placeholder: "プレースホルダー",
-                        error: "エラーテキストが入ります。"
-                    )
-                    .frame(width: 300)
-
-                    InputText(
-                        .constant("誤った入力内容"),
-                        placeholder: "プレースホルダー",
-                        error: "エラーテキストが入ります。"
-                    )
-                    .frame(width: 150)
-                }
-
-                HStack(alignment: .top, spacing: 20) {
-                    Text("Error : focus")
-                        .frame(width: 80, alignment: .trailing)
-                        .font(.caption)
-
-                    InputText(
-                        .constant("入力テキスト"),
-                        placeholder: "プレースホルダー",
-                        isFocused: true,
-                        error: "エラーテキストが入ります。"
-                    )
-                    .frame(width: 200)
-
-                    InputText(
-                        .constant("入力テキスト"),
-                        placeholder: "プレースホルダー",
-                        isFocused: true,
-                        error: "エラーテキストが入ります。"
-                    )
-                    .frame(width: 300)
-
-                    InputText(
-                        .constant("入力テキスト"),
-                        placeholder: "プレースホルダー",
-                        isFocused: true,
-                        error: "エラーテキストが入ります。"
-                    )
-                    .frame(width: 150)
-                }
-
-                HStack(spacing: 20) {
-                    Text("Disabled")
-                        .frame(width: 80, alignment: .trailing)
-                        .font(.caption)
-
-                    InputText(
-                        .constant("入力テキスト"),
-                        placeholder: "プレースホルダー",
-                        isDisabled: true
-                    )
-                    .frame(width: 200)
-
-                    InputText(
-                        .constant("入力テキスト"),
-                        placeholder: "プレースホルダー",
-                        isDisabled: true
-                    )
-                    .frame(width: 300)
-
-                    InputText(
-                        .constant("入力テキスト"),
-                        placeholder: "プレースホルダー",
-                        isDisabled: true
-                    )
-                    .frame(width: 150)
-                }
-
-                HStack(spacing: 20) {
-                    Text("Disabled : focus")
-                        .frame(width: 80, alignment: .trailing)
-                        .font(.caption)
-
-                    InputText(
-                        .constant("入力テキスト"),
-                        placeholder: "プレースホルダー",
-                        isFocused: true,
-                        isDisabled: true
-                    )
-                    .frame(width: 200)
-
-                    InputText(
-                        .constant("入力テキスト"),
-                        placeholder: "プレースホルダー",
-                        isFocused: true,
-                        isDisabled: true
-                    )
-                    .frame(width: 300)
-
-                    InputText(
-                        .constant("入力テキスト"),
-                        placeholder: "プレースホルダー",
-                        isFocused: true,
-                        isDisabled: true
-                    )
-                    .frame(width: 150)
-                }
-            }
-            .padding()
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 150").font(.caption).foregroundColor(.secondary)
+            InputText(.constant(""), placeholder: "プレースホルダー").frame(width: 150)
+            InputText(.constant("入力テキスト"), placeholder: "プレースホルダー").frame(width: 150)
         }
     }
+    .padding()
+}
+
+#Preview("InputText - Focus") {
+    VStack(alignment: .leading, spacing: 20) {
+        Text("InputText - Focus").font(.title2.bold())
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 200").font(.caption).foregroundColor(.secondary)
+            InputText(.constant(""), placeholder: "プレースホルダー", isFocused: true).frame(width: 200)
+            InputText(.constant("入力テキスト"), placeholder: "プレースホルダー", isFocused: true).frame(width: 200)
+        }
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 300").font(.caption).foregroundColor(.secondary)
+            InputText(.constant(""), placeholder: "プレースホルダー", isFocused: true).frame(width: 300)
+            InputText(.constant("入力テキスト"), placeholder: "プレースホルダー", isFocused: true).frame(width: 300)
+        }
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 150").font(.caption).foregroundColor(.secondary)
+            InputText(.constant(""), placeholder: "プレースホルダー", isFocused: true).frame(width: 150)
+            InputText(.constant("入力テキスト"), placeholder: "プレースホルダー", isFocused: true).frame(width: 150)
+        }
+    }
+    .padding()
+}
+
+#Preview("InputText - Error") {
+    VStack(alignment: .leading, spacing: 20) {
+        Text("InputText - Error").font(.title2.bold())
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 200").font(.caption).foregroundColor(.secondary)
+            InputText(.constant("誤った入力内容"), placeholder: "プレースホルダー", error: "エラーテキストが入ります。").frame(width: 200)
+        }
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 300").font(.caption).foregroundColor(.secondary)
+            InputText(.constant("誤った入力内容"), placeholder: "プレースホルダー", error: "エラーテキストが入ります。").frame(width: 300)
+        }
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 150").font(.caption).foregroundColor(.secondary)
+            InputText(.constant("誤った入力内容"), placeholder: "プレースホルダー", error: "エラーテキストが入ります。").frame(width: 150)
+        }
+
+        Divider()
+        Text("Error + Focus").font(.caption.bold())
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 200").font(.caption).foregroundColor(.secondary)
+            InputText(.constant("入力テキスト"), placeholder: "プレースホルダー", isFocused: true, error: "エラーテキストが入ります。").frame(width: 200)
+        }
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 300").font(.caption).foregroundColor(.secondary)
+            InputText(.constant("入力テキスト"), placeholder: "プレースホルダー", isFocused: true, error: "エラーテキストが入ります。").frame(width: 300)
+        }
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 150").font(.caption).foregroundColor(.secondary)
+            InputText(.constant("入力テキスト"), placeholder: "プレースホルダー", isFocused: true, error: "エラーテキストが入ります。").frame(width: 150)
+        }
+    }
+    .padding()
+}
+
+#Preview("InputText - Disabled") {
+    VStack(alignment: .leading, spacing: 20) {
+        Text("InputText - Disabled").font(.title2.bold())
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 200").font(.caption).foregroundColor(.secondary)
+            InputText(.constant("入力テキスト"), placeholder: "プレースホルダー", isDisabled: true).frame(width: 200)
+        }
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 300").font(.caption).foregroundColor(.secondary)
+            InputText(.constant("入力テキスト"), placeholder: "プレースホルダー", isDisabled: true).frame(width: 300)
+        }
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 150").font(.caption).foregroundColor(.secondary)
+            InputText(.constant("入力テキスト"), placeholder: "プレースホルダー", isDisabled: true).frame(width: 150)
+        }
+
+        Divider()
+        Text("Disabled + Focus").font(.caption.bold())
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 200").font(.caption).foregroundColor(.secondary)
+            InputText(.constant("入力テキスト"), placeholder: "プレースホルダー", isFocused: true, isDisabled: true).frame(width: 200)
+        }
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 300").font(.caption).foregroundColor(.secondary)
+            InputText(.constant("入力テキスト"), placeholder: "プレースホルダー", isFocused: true, isDisabled: true).frame(width: 300)
+        }
+
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Width: 150").font(.caption).foregroundColor(.secondary)
+            InputText(.constant("入力テキスト"), placeholder: "プレースホルダー", isFocused: true, isDisabled: true).frame(width: 150)
+        }
+    }
+    .padding()
 }

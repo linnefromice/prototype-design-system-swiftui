@@ -140,9 +140,13 @@ extension ProgressViewStyle where Self == DADSLinearProgressViewStyle {
 
 // MARK: - Preview
 
-#Preview {
+import SwiftUI
+
+// MARK: - ProgressIndicator Previews - Split by Type
+
+#Preview("ProgressIndicator - Circular") {
     ScrollView {
-        VStack(alignment: .leading, spacing: 40) {
+        VStack(alignment: .leading, spacing: 32) {
             Text("Circular Progress Indicator")
                 .font(.title.bold())
 
@@ -150,7 +154,7 @@ extension ProgressViewStyle where Self == DADSLinearProgressViewStyle {
                 // Large
                 HStack(spacing: 20) {
                     Text("Large")
-                        .frame(width: 120, alignment: .trailing)
+                        .frame(width: 100, alignment: .trailing)
                         .font(.caption)
 
                     ProgressView("ラベル", value: 0.7)
@@ -162,7 +166,7 @@ extension ProgressViewStyle where Self == DADSLinearProgressViewStyle {
                 // Small
                 HStack(spacing: 20) {
                     Text("Small")
-                        .frame(width: 120, alignment: .trailing)
+                        .frame(width: 100, alignment: .trailing)
                         .font(.caption)
 
                     ProgressView("ラベル", value: 0.7)
@@ -174,7 +178,7 @@ extension ProgressViewStyle where Self == DADSLinearProgressViewStyle {
                 // With Background
                 HStack(spacing: 20) {
                     Text("With Background")
-                        .frame(width: 120, alignment: .trailing)
+                        .frame(width: 100, alignment: .trailing)
                         .font(.caption)
 
                     ProgressView("ラベル", value: 0.7)
@@ -187,6 +191,49 @@ extension ProgressViewStyle where Self == DADSLinearProgressViewStyle {
             Divider()
                 .padding(.vertical)
 
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Progress Values")
+                    .font(.caption.bold())
+
+                HStack(spacing: 16) {
+                    ProgressView("0%", value: 0.0)
+                        .progressViewStyle(.dadsCircular(size: 40))
+
+                    ProgressView("50%", value: 0.5)
+                        .progressViewStyle(.dadsCircular(size: 40))
+
+                    ProgressView("100%", value: 1.0)
+                        .progressViewStyle(.dadsCircular(size: 40))
+                }
+            }
+
+            Divider()
+                .padding(.vertical)
+
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Without Labels")
+                    .font(.caption.bold())
+
+                HStack(spacing: 16) {
+                    ProgressView(value: 0.3)
+                        .progressViewStyle(.dadsCircular(size: 48))
+
+                    ProgressView(value: 0.6)
+                        .progressViewStyle(.dadsCircular(size: 48))
+
+                    ProgressView(value: 0.9)
+                        .progressViewStyle(.dadsCircular(size: 48))
+                }
+            }
+        }
+        .padding()
+    }
+    .preferredColorScheme(.light)
+}
+
+#Preview("ProgressIndicator - Linear") {
+    ScrollView {
+        VStack(alignment: .leading, spacing: 32) {
             Text("Linear Progress Indicator")
                 .font(.title.bold())
 
@@ -231,43 +278,16 @@ extension ProgressViewStyle where Self == DADSLinearProgressViewStyle {
             Divider()
                 .padding(.vertical)
 
-            Text("Different Progress Values")
-                .font(.title.bold())
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Progress Values")
+                    .font(.caption.bold())
 
-            VStack(spacing: 24) {
-                // Circular - various progress
-                HStack(spacing: 16) {
-                    ProgressView("0%", value: 0.0)
-                        .progressViewStyle(.dadsCircular(size: 40))
-
-                    ProgressView("25%", value: 0.25)
-                        .progressViewStyle(.dadsCircular(size: 40))
-
-                    ProgressView("50%", value: 0.5)
-                        .progressViewStyle(.dadsCircular(size: 40))
-
-                    ProgressView("75%", value: 0.75)
-                        .progressViewStyle(.dadsCircular(size: 40))
-
-                    ProgressView("100%", value: 1.0)
-                        .progressViewStyle(.dadsCircular(size: 40))
-                }
-
-                // Linear - various progress
                 VStack(spacing: 12) {
                     ProgressView("0%", value: 0.0)
                         .progressViewStyle(.dadsLinear(height: 6))
                         .frame(height: 28)
 
-                    ProgressView("25%", value: 0.25)
-                        .progressViewStyle(.dadsLinear(height: 6))
-                        .frame(height: 28)
-
                     ProgressView("50%", value: 0.5)
-                        .progressViewStyle(.dadsLinear(height: 6))
-                        .frame(height: 28)
-
-                    ProgressView("75%", value: 0.75)
                         .progressViewStyle(.dadsLinear(height: 6))
                         .frame(height: 28)
 
@@ -280,20 +300,9 @@ extension ProgressViewStyle where Self == DADSLinearProgressViewStyle {
             Divider()
                 .padding(.vertical)
 
-            Text("Without Labels")
-                .font(.title.bold())
-
-            VStack(spacing: 24) {
-                HStack(spacing: 16) {
-                    ProgressView(value: 0.3)
-                        .progressViewStyle(.dadsCircular(size: 48))
-
-                    ProgressView(value: 0.6)
-                        .progressViewStyle(.dadsCircular(size: 48))
-
-                    ProgressView(value: 0.9)
-                        .progressViewStyle(.dadsCircular(size: 48))
-                }
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Without Labels")
+                    .font(.caption.bold())
 
                 VStack(spacing: 12) {
                     ProgressView(value: 0.3)

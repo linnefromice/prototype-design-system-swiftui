@@ -164,112 +164,220 @@ extension ToggleStyle where Self == CheckboxStyle {
     }
 }
 
-#Preview {
+#Preview("Checkbox - Small") {
     @Previewable @State var isOn: Bool = true
 
-    let sizeVariants: [CheckboxSizeVariant] = [.sm, .md, .lg]
-
-    VStack(spacing: 32) {
-        // Default state row
-        HStack(spacing: 48) {
-            ForEach(sizeVariants, id: \.self) { sizeVariant in
-                Toggle("", isOn: $isOn)
-                    .toggleStyle(CheckboxStyle(sizeVariant: sizeVariant))
-            }
+    VStack(alignment: .leading, spacing: 16) {
+        Group {
+            Text("Default").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(sizeVariant: .sm))
         }
 
-        // Hovered state row
-        HStack(spacing: 48) {
-            ForEach(sizeVariants, id: \.self) { sizeVariant in
-                Toggle("", isOn: $isOn)
-                    .toggleStyle(CheckboxStyle(sizeVariant: sizeVariant, isHover: true))
-            }
+        Group {
+            Text("Hovered").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(sizeVariant: .sm, isHover: true))
         }
 
-        // Indeterminate state row
-        HStack(spacing: 48) {
-            ForEach(sizeVariants, id: \.self) { sizeVariant in
-                Toggle("", isOn: $isOn)
-                    .toggleStyle(
-                        CheckboxStyle(markVariant: .indeterminate, sizeVariant: sizeVariant))
-            }
+        Group {
+            Text("Indeterminate").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(markVariant: .indeterminate, sizeVariant: .sm))
         }
 
-        // Indeterminate + Hovered state row
-        HStack(spacing: 48) {
-            ForEach(sizeVariants, id: \.self) { sizeVariant in
-                Toggle("", isOn: $isOn)
-                    .toggleStyle(
-                        CheckboxStyle(
-                            markVariant: .indeterminate, sizeVariant: sizeVariant, isHover: true))
-            }
+        Group {
+            Text("Indeterminate + Hovered").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(markVariant: .indeterminate, sizeVariant: .sm, isHover: true))
         }
 
-        // Focused state row
-        HStack(spacing: 48) {
-            ForEach(sizeVariants, id: \.self) { sizeVariant in
-                Toggle("", isOn: $isOn)
-                    .toggleStyle(
-                        CheckboxStyle(sizeVariant: sizeVariant, isHover: true, isFocused: true))
-            }
+        Group {
+            Text("Focused").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(sizeVariant: .sm, isHover: true, isFocused: true))
         }
 
-        // Indeterminate + Focused state row
-        HStack(spacing: 48) {
-            ForEach(sizeVariants, id: \.self) { sizeVariant in
-                Toggle("", isOn: $isOn)
-                    .toggleStyle(
-                        CheckboxStyle(
-                            markVariant: .indeterminate, sizeVariant: sizeVariant, isHover: true,
-                            isFocused: true))
-            }
+        Group {
+            Text("Indeterminate + Focused").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(markVariant: .indeterminate, sizeVariant: .sm, isHover: true, isFocused: true))
         }
 
-        // Error state row
-        HStack(spacing: 48) {
-            ForEach(sizeVariants, id: \.self) { sizeVariant in
-                Toggle("", isOn: $isOn)
-                    .toggleStyle(CheckboxStyle(typeVariant: .error, sizeVariant: sizeVariant))
-            }
+        Group {
+            Text("Error").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(typeVariant: .error, sizeVariant: .sm))
         }
 
-        // Error + Hovered state row
-        HStack(spacing: 48) {
-            ForEach(sizeVariants, id: \.self) { sizeVariant in
-                Toggle("", isOn: $isOn)
-                    .toggleStyle(
-                        CheckboxStyle(typeVariant: .error, sizeVariant: sizeVariant, isHover: true))
-            }
+        Group {
+            Text("Error + Hovered").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(typeVariant: .error, sizeVariant: .sm, isHover: true))
         }
 
-        // Error + Indeterminate state row
-        HStack(spacing: 48) {
-            ForEach(sizeVariants, id: \.self) { sizeVariant in
-                Toggle("", isOn: $isOn)
-                    .toggleStyle(
-                        CheckboxStyle(
-                            typeVariant: .error, markVariant: .indeterminate,
-                            sizeVariant: sizeVariant))
-            }
+        Group {
+            Text("Error + Indeterminate").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(typeVariant: .error, markVariant: .indeterminate, sizeVariant: .sm))
         }
 
-        // Disabled state row
-        HStack(spacing: 48) {
-            ForEach(sizeVariants, id: \.self) { sizeVariant in
-                Toggle("", isOn: $isOn)
-                    .toggleStyle(CheckboxStyle(typeVariant: .disabled, sizeVariant: sizeVariant))
-            }
+        Group {
+            Text("Disabled").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(typeVariant: .disabled, sizeVariant: .sm))
         }
 
-        // Disabled + Indeterminate state row
-        HStack(spacing: 48) {
-            ForEach(sizeVariants, id: \.self) { sizeVariant in
-                Toggle("", isOn: $isOn)
-                    .toggleStyle(
-                        CheckboxStyle(
-                            typeVariant: .disabled, markVariant: .indeterminate,
-                            sizeVariant: sizeVariant))
-            }
+        Group {
+            Text("Disabled + Indeterminate").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(typeVariant: .disabled, markVariant: .indeterminate, sizeVariant: .sm))
+        }
+    }
+    .padding()
+}
+
+#Preview("Checkbox - Medium") {
+    @Previewable @State var isOn: Bool = true
+
+    VStack(alignment: .leading, spacing: 16) {
+        Group {
+            Text("Default").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(sizeVariant: .md))
+        }
+
+        Group {
+            Text("Hovered").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(sizeVariant: .md, isHover: true))
+        }
+
+        Group {
+            Text("Indeterminate").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(markVariant: .indeterminate, sizeVariant: .md))
+        }
+
+        Group {
+            Text("Indeterminate + Hovered").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(markVariant: .indeterminate, sizeVariant: .md, isHover: true))
+        }
+
+        Group {
+            Text("Focused").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(sizeVariant: .md, isHover: true, isFocused: true))
+        }
+
+        Group {
+            Text("Indeterminate + Focused").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(markVariant: .indeterminate, sizeVariant: .md, isHover: true, isFocused: true))
+        }
+
+        Group {
+            Text("Error").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(typeVariant: .error, sizeVariant: .md))
+        }
+
+        Group {
+            Text("Error + Hovered").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(typeVariant: .error, sizeVariant: .md, isHover: true))
+        }
+
+        Group {
+            Text("Error + Indeterminate").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(typeVariant: .error, markVariant: .indeterminate, sizeVariant: .md))
+        }
+
+        Group {
+            Text("Disabled").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(typeVariant: .disabled, sizeVariant: .md))
+        }
+
+        Group {
+            Text("Disabled + Indeterminate").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(typeVariant: .disabled, markVariant: .indeterminate, sizeVariant: .md))
+        }
+    }
+    .padding()
+}
+
+#Preview("Checkbox - Large") {
+    @Previewable @State var isOn: Bool = true
+
+    VStack(alignment: .leading, spacing: 16) {
+        Group {
+            Text("Default").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(sizeVariant: .lg))
+        }
+
+        Group {
+            Text("Hovered").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(sizeVariant: .lg, isHover: true))
+        }
+
+        Group {
+            Text("Indeterminate").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(markVariant: .indeterminate, sizeVariant: .lg))
+        }
+
+        Group {
+            Text("Indeterminate + Hovered").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(markVariant: .indeterminate, sizeVariant: .lg, isHover: true))
+        }
+
+        Group {
+            Text("Focused").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(sizeVariant: .lg, isHover: true, isFocused: true))
+        }
+
+        Group {
+            Text("Indeterminate + Focused").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(markVariant: .indeterminate, sizeVariant: .lg, isHover: true, isFocused: true))
+        }
+
+        Group {
+            Text("Error").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(typeVariant: .error, sizeVariant: .lg))
+        }
+
+        Group {
+            Text("Error + Hovered").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(typeVariant: .error, sizeVariant: .lg, isHover: true))
+        }
+
+        Group {
+            Text("Error + Indeterminate").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(typeVariant: .error, markVariant: .indeterminate, sizeVariant: .lg))
+        }
+
+        Group {
+            Text("Disabled").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(typeVariant: .disabled, sizeVariant: .lg))
+        }
+
+        Group {
+            Text("Disabled + Indeterminate").font(.caption).foregroundColor(.secondary)
+            Toggle("", isOn: $isOn)
+                .toggleStyle(CheckboxStyle(typeVariant: .disabled, markVariant: .indeterminate, sizeVariant: .lg))
         }
     }
     .padding()
