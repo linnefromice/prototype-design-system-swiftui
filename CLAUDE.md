@@ -204,8 +204,118 @@ Example preview pattern:
 - **Border Radius**: Use `Size.BorderRadius.val8` (8px) for most components
 - **Padding**: Components use size-specific padding (varies by ButtonSizeVariant, etc.)
 
-## Documentation
+## Documentation and Project Organization
 
-- `Docs/Design/` - Design pattern documentation (FocusState, Sizing)
-- `Docs/Components/` - Component specifications
-- `Prompts/` - AI conversation history and implementation prompts (not core docs)
+### Documentation Locations
+
+- **`docs/`** - Hugo site for UI Snapshot Catalog (GitHub Pages)
+  - **IMPORTANT**: This directory is for Hugo view files only (content, layouts, static assets)
+  - Do NOT place implementation plans or documentation markdown files here
+  - Contains: `content/`, `data/`, `layouts/`, `static/`, `hugo.toml`
+
+- **`Prompts/`** - AI coding assistant workspace (Git-ignored except for Plan/)
+  - `Prompts/Plan/` - Implementation plans and design documents (Git-tracked)
+    - Example: `Implementation-Plan-Snapshot-Catalog-Improvements.md`
+    - Example: `Prefire-Configuration.md`
+  - Other files in `Prompts/` are temporary and Git-ignored
+  - Maintained by `.gitkeep` to preserve directory structure
+
+- **`Scripts/`** - Build and deployment scripts with documentation
+  - `Scripts/README.md` - Script usage and customization guide
+
+### When to Create Implementation Plans
+
+When creating implementation plan markdown files, always place them in `Prompts/Plan/`:
+
+```bash
+# Correct location
+Prompts/Plan/Implementation-Plan-Feature-Name.md
+Prompts/Plan/Component-Specification.md
+
+# Incorrect locations (do NOT use)
+Docs/Plan-*.md  # docs/ is for Hugo only
+./Plan-*.md     # root directory should be clean
+```
+
+## UI Snapshot Catalog
+
+### Overview
+
+The project maintains an automated UI snapshot catalog built with Hugo and deployed to GitHub Pages. Snapshot PNGs from SwiftUI Preview tests are automatically converted to a searchable web gallery.
+
+### Workflow
+
+```
+1. SwiftUI Preview (#Preview macro)
+   ↓
+2. Prefire detects previews (.prefire.yml configuration)
+   ↓
+3. Generate PreviewTests.generated.swift
+   ↓
+4. Run tests in Xcode
+   ↓
+5. Output PNGs to ProtoDesignSystemTests/__Snapshots__/
+   ↓
+6. Run Scripts/prepare_snapshot_catalog.py
+   ↓
+7. Copy to docs/static/snapshots/ + Generate docs/data/snapshots.json
+   ↓
+8. Hugo builds catalog site → GitHub Pages
+```
+
+### Key Files
+
+- **`.prefire.yml`** - Prefire configuration for snapshot test generation
+  - Defines snapshot devices (iPhone 14, iPad)
+  - Specifies preview source paths
+  - See `Prompts/Plan/Prefire-Configuration.md` for details
+
+- **`Scripts/prepare_snapshot_catalog.py`** - Snapshot processing script
+  - **Metadata extraction**: Parses filenames like `Button_small_hover_0.1.png`
+    - Extracts: component, category, variant, state
+  - **Category mapping**: Auto-categorizes (Form/Content/Feedback/Other)
+  - **Grouped JSON output**: `by_category` for organized display
+  - Options: `--clean`, `--dry-run`
+  - See `Scripts/README.md` for usage
+
+- **`Scripts/test_metadata_extraction.py`** - Test suite for metadata extraction
+  - 6 test cases covering various filename patterns
+  - Run: `python Scripts/test_metadata_extraction.py`
+
+### Snapshot Filename Convention
+
+For optimal metadata extraction, name previews with this pattern:
+
+```swift
+#Preview("ComponentName_variant_state") {
+    Button(label: "ボタン", size: .small, state: .hover)
+}
+```
+
+Results in filename: `Button_small_hover_0.1.png`
+
+Extracted metadata:
+- `component`: "Button"
+- `category`: "Form" (from COMPONENT_CATEGORIES mapping)
+- `variant`: "small"
+- `state`: "hover"
+
+### Running Locally
+
+```bash
+# Generate snapshot data with metadata extraction
+python Scripts/prepare_snapshot_catalog.py --clean
+
+# Preview changes without modifying files
+python Scripts/prepare_snapshot_catalog.py --dry-run
+
+# Start Hugo dev server
+cd docs && hugo server
+```
+
+### Implementation Plans
+
+Snapshot catalog improvements are tracked in:
+- `Prompts/Plan/Implementation-Plan-Snapshot-Catalog-Improvements.md`
+- `Prompts/Plan/Snapshot-Metadata-Extraction-Implementation.md` (Phase 2 complete)
+- `Prompts/Plan/Phase1-Prefire-Configuration-Summary.md` (Phase 1 complete)

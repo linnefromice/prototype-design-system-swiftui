@@ -6,7 +6,9 @@ xcuserdata/
 
 ## Custom
 ### Prompt
-Prompts/
+Prompts/*
+!Prompts/.gitkeep
+!Prompts/Plan/
 
 # Generated UI catalog output
 ui-catalog/
