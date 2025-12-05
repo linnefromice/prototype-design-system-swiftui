@@ -1,7 +1,7 @@
 test_configuration:
   target: ProtoDesignSystemTests
-  test_target_path: ${PROJECT_DIR}/ProtoDesignSystemTests
-  test_file_path: ProtoDesignSystemTests/PreviewTests.generated.swift
+  # test_target_path: ${PROJECT_DIR}/ProtoDesignSystemTests
+  # test_file_path: ProtoDesignSystemTests/PreviewTests.generated.swift
   simulator_device: "iPhone15,2"
   required_os: 16
   preview_default_enabled: true

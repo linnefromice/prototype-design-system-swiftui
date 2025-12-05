@@ -92,46 +92,137 @@ struct TextButton: View {
     }
 }
 
-#Preview {
-    ScrollView {
-        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
-            ForEach(ButtonTypeVariant.allCases, id: \.self) { typeVariant in
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(String(describing: typeVariant))
-                        .font(.headline)
-                        .foregroundColor(.primary)
+#Preview("TextButton - Small") {
+    VStack(alignment: .leading, spacing: 16) {
+        ForEach(ButtonTypeVariant.allCases, id: \.self) { typeVariant in
+            VStack(alignment: .leading, spacing: 8) {
+                Text(String(describing: typeVariant))
+                    .font(.caption)
+                    .foregroundColor(.secondary)
 
-                    ForEach(ButtonSizeVariant.allCases, id: \.self) { sizeVariant in
-                        VStack(spacing: 8) {
-                            HStack {
-                                TextButton(
-                                    title: "Normal",
-                                    action: {},
-                                    typeVariant: typeVariant,
-                                    sizeVariant: sizeVariant,
-                                    isFocused: false
-                                )
-                                Spacer()
-                            }
-                            HStack {
-                                TextButton(
-                                    title: "Focused",
-                                    action: {},
-                                    typeVariant: typeVariant,
-                                    sizeVariant: sizeVariant,
-                                    isFocused: true
-                                )
-                                Spacer()
-                            }
-                        }
+                HStack(spacing: 16) {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Default")
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                        TextButton(
+                            title: "Hello, World!",
+                            action: {},
+                            typeVariant: typeVariant,
+                            sizeVariant: .small,
+                            isFocused: false
+                        )
+                    }
+
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Focused")
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                        TextButton(
+                            title: "Hello, World!",
+                            action: {},
+                            typeVariant: typeVariant,
+                            sizeVariant: .small,
+                            isFocused: true
+                        )
                     }
                 }
-                .padding()
-                .background(Color.gray.opacity(0.1))
-                .cornerRadius(8)
             }
+            .padding()
+            .background(Color.gray.opacity(0.05))
+            .cornerRadius(8)
         }
-        .padding()
     }
+    .padding()
+    .preferredColorScheme(.light)
+}
+
+#Preview("TextButton - Medium") {
+    VStack(alignment: .leading, spacing: 16) {
+        ForEach(ButtonTypeVariant.allCases, id: \.self) { typeVariant in
+            VStack(alignment: .leading, spacing: 8) {
+                Text(String(describing: typeVariant))
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+
+                HStack(spacing: 16) {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Default")
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                        TextButton(
+                            title: "Hello, World!",
+                            action: {},
+                            typeVariant: typeVariant,
+                            sizeVariant: .medium,
+                            isFocused: false
+                        )
+                    }
+
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Focused")
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                        TextButton(
+                            title: "Hello, World!",
+                            action: {},
+                            typeVariant: typeVariant,
+                            sizeVariant: .medium,
+                            isFocused: true
+                        )
+                    }
+                }
+            }
+            .padding()
+            .background(Color.gray.opacity(0.05))
+            .cornerRadius(8)
+        }
+    }
+    .padding()
+    .preferredColorScheme(.light)
+}
+
+#Preview("TextButton - Large") {
+    VStack(alignment: .leading, spacing: 16) {
+        ForEach(ButtonTypeVariant.allCases, id: \.self) { typeVariant in
+            VStack(alignment: .leading, spacing: 8) {
+                Text(String(describing: typeVariant))
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+
+                HStack(spacing: 16) {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Default")
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                        TextButton(
+                            title: "Hello, World!",
+                            action: {},
+                            typeVariant: typeVariant,
+                            sizeVariant: .large,
+                            isFocused: false
+                        )
+                    }
+
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Focused")
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                        TextButton(
+                            title: "Hello, World!",
+                            action: {},
+                            typeVariant: typeVariant,
+                            sizeVariant: .large,
+                            isFocused: true
+                        )
+                    }
+                }
+            }
+            .padding()
+            .background(Color.gray.opacity(0.05))
+            .cornerRadius(8)
+        }
+    }
+    .padding()
     .preferredColorScheme(.light)
 }
