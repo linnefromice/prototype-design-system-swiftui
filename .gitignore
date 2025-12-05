@@ -11,3 +11,10 @@ Prompts/
 # Generated UI catalog output
 ui-catalog/
 docs/public/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python

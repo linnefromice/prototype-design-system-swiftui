@@ -1,125 +1,382 @@
 {
-  "generated_at": "2025-12-03 15:16 UTC",
+  "generated_at": "2025-12-05 02:04 UTC",
+  "total_snapshots": 15,
+  "categories": {
+    "Feedback": 2,
+    "Form": 9,
+    "Content": 3,
+    "Other": 1
+  },
   "snapshots": [
     {
       "file": "Banner_0.1.png",
-      "title": "Banner 0.1",
+      "title": "Banner",
       "tags": [
-        "0.1",
-        "banner"
-      ]
+        "banner",
+        "feedback"
+      ],
+      "component": "Banner",
+      "category": "Feedback",
+      "variant": null,
+      "state": null
     },
     {
       "file": "Checkbox_0.1.png",
-      "title": "Checkbox 0.1",
+      "title": "Checkbox",
       "tags": [
-        "0.1",
-        "checkbox"
-      ]
+        "checkbox",
+        "form"
+      ],
+      "component": "Checkbox",
+      "category": "Form",
+      "variant": null,
+      "state": null
     },
     {
       "file": "ChipLabel_0.1.png",
-      "title": "ChipLabel 0.1",
+      "title": "ChipLabel",
       "tags": [
-        "0.1",
-        "chiplabel"
-      ]
+        "chiplabel",
+        "content"
+      ],
+      "component": "ChipLabel",
+      "category": "Content",
+      "variant": null,
+      "state": null
     },
     {
       "file": "ChipTag_0.1.png",
-      "title": "ChipTag 0.1",
+      "title": "ChipTag",
       "tags": [
-        "0.1",
-        "chiptag"
-      ]
+        "chiptag",
+        "content"
+      ],
+      "component": "ChipTag",
+      "category": "Content",
+      "variant": null,
+      "state": null
     },
     {
       "file": "ContentView_0.1.png",
-      "title": "ContentView 0.1",
+      "title": "ContentView",
       "tags": [
-        "0.1",
-        "contentview"
-      ]
+        "contentview",
+        "other"
+      ],
+      "component": "ContentView",
+      "category": "Other",
+      "variant": null,
+      "state": null
     },
     {
       "file": "InputText_0.1.png",
-      "title": "InputText 0.1",
+      "title": "InputText",
       "tags": [
-        "0.1",
+        "form",
         "inputtext"
-      ]
+      ],
+      "component": "InputText",
+      "category": "Form",
+      "variant": null,
+      "state": null
     },
     {
       "file": "OutlineButton_0.1.png",
-      "title": "OutlineButton 0.1",
+      "title": "OutlineButton",
       "tags": [
-        "0.1",
+        "form",
         "outlinebutton"
-      ]
+      ],
+      "component": "OutlineButton",
+      "category": "Form",
+      "variant": null,
+      "state": null
     },
     {
       "file": "ProgressIndicator_0.1.png",
-      "title": "ProgressIndicator 0.1",
+      "title": "ProgressIndicator",
       "tags": [
-        "0.1",
+        "feedback",
         "progressindicator"
-      ]
+      ],
+      "component": "ProgressIndicator",
+      "category": "Feedback",
+      "variant": null,
+      "state": null
     },
     {
       "file": "RadioButton_0.1.png",
-      "title": "RadioButton 0.1",
+      "title": "RadioButton",
       "tags": [
-        "0.1",
+        "form",
         "radiobutton"
-      ]
+      ],
+      "component": "RadioButton",
+      "category": "Form",
+      "variant": null,
+      "state": null
     },
     {
       "file": "SearchBox_0.1.png",
-      "title": "SearchBox 0.1",
+      "title": "SearchBox",
       "tags": [
-        "0.1",
+        "form",
         "searchbox"
-      ]
+      ],
+      "component": "SearchBox",
+      "category": "Form",
+      "variant": null,
+      "state": null
     },
     {
       "file": "SelectBox_0.1.png",
-      "title": "SelectBox 0.1",
+      "title": "SelectBox",
       "tags": [
-        "0.1",
+        "form",
         "selectbox"
-      ]
+      ],
+      "component": "SelectBox",
+      "category": "Form",
+      "variant": null,
+      "state": null
     },
     {
       "file": "SolidFillButton_0.1.png",
-      "title": "SolidFillButton 0.1",
+      "title": "SolidFillButton",
       "tags": [
-        "0.1",
+        "form",
         "solidfillbutton"
-      ]
+      ],
+      "component": "SolidFillButton",
+      "category": "Form",
+      "variant": null,
+      "state": null
     },
     {
       "file": "TextArea_0.1.png",
-      "title": "TextArea 0.1",
+      "title": "TextArea",
       "tags": [
-        "0.1",
+        "form",
         "textarea"
-      ]
+      ],
+      "component": "TextArea",
+      "category": "Form",
+      "variant": null,
+      "state": null
     },
     {
       "file": "TextButton_0.1.png",
-      "title": "TextButton 0.1",
+      "title": "TextButton",
       "tags": [
-        "0.1",
+        "form",
         "textbutton"
-      ]
+      ],
+      "component": "TextButton",
+      "category": "Form",
+      "variant": null,
+      "state": null
     },
     {
       "file": "UtilityLink_0.1.png",
-      "title": "UtilityLink 0.1",
+      "title": "UtilityLink",
       "tags": [
-        "0.1",
+        "content",
         "utilitylink"
-      ]
+      ],
+      "component": "UtilityLink",
+      "category": "Content",
+      "variant": null,
+      "state": null
     }
-  ]
+  ],
+  "by_category": {
+    "Feedback": [
+      {
+        "file": "Banner_0.1.png",
+        "title": "Banner",
+        "tags": [
+          "banner",
+          "feedback"
+        ],
+        "component": "Banner",
+        "category": "Feedback",
+        "variant": null,
+        "state": null
+      },
+      {
+        "file": "ProgressIndicator_0.1.png",
+        "title": "ProgressIndicator",
+        "tags": [
+          "feedback",
+          "progressindicator"
+        ],
+        "component": "ProgressIndicator",
+        "category": "Feedback",
+        "variant": null,
+        "state": null
+      }
+    ],
+    "Form": [
+      {
+        "file": "Checkbox_0.1.png",
+        "title": "Checkbox",
+        "tags": [
+          "checkbox",
+          "form"
+        ],
+        "component": "Checkbox",
+        "category": "Form",
+        "variant": null,
+        "state": null
+      },
+      {
+        "file": "InputText_0.1.png",
+        "title": "InputText",
+        "tags": [
+          "form",
+          "inputtext"
+        ],
+        "component": "InputText",
+        "category": "Form",
+        "variant": null,
+        "state": null
+      },
+      {
+        "file": "OutlineButton_0.1.png",
+        "title": "OutlineButton",
+        "tags": [
+          "form",
+          "outlinebutton"
+        ],
+        "component": "OutlineButton",
+        "category": "Form",
+        "variant": null,
+        "state": null
+      },
+      {
+        "file": "RadioButton_0.1.png",
+        "title": "RadioButton",
+        "tags": [
+          "form",
+          "radiobutton"
+        ],
+        "component": "RadioButton",
+        "category": "Form",
+        "variant": null,
+        "state": null
+      },
+      {
+        "file": "SearchBox_0.1.png",
+        "title": "SearchBox",
+        "tags": [
+          "form",
+          "searchbox"
+        ],
+        "component": "SearchBox",
+        "category": "Form",
+        "variant": null,
+        "state": null
+      },
+      {
+        "file": "SelectBox_0.1.png",
+        "title": "SelectBox",
+        "tags": [
+          "form",
+          "selectbox"
+        ],
+        "component": "SelectBox",
+        "category": "Form",
+        "variant": null,
+        "state": null
+      },
+      {
+        "file": "SolidFillButton_0.1.png",
+        "title": "SolidFillButton",
+        "tags": [
+          "form",
+          "solidfillbutton"
+        ],
+        "component": "SolidFillButton",
+        "category": "Form",
+        "variant": null,
+        "state": null
+      },
+      {
+        "file": "TextArea_0.1.png",
+        "title": "TextArea",
+        "tags": [
+          "form",
+          "textarea"
+        ],
+        "component": "TextArea",
+        "category": "Form",
+        "variant": null,
+        "state": null
+      },
+      {
+        "file": "TextButton_0.1.png",
+        "title": "TextButton",
+        "tags": [
+          "form",
+          "textbutton"
+        ],
+        "component": "TextButton",
+        "category": "Form",
+        "variant": null,
+        "state": null
+      }
+    ],
+    "Content": [
+      {
+        "file": "ChipLabel_0.1.png",
+        "title": "ChipLabel",
+        "tags": [
+          "chiplabel",
+          "content"
+        ],
+        "component": "ChipLabel",
+        "category": "Content",
+        "variant": null,
+        "state": null
+      },
+      {
+        "file": "ChipTag_0.1.png",
+        "title": "ChipTag",
+        "tags": [
+          "chiptag",
+          "content"
+        ],
+        "component": "ChipTag",
+        "category": "Content",
+        "variant": null,
+        "state": null
+      },
+      {
+        "file": "UtilityLink_0.1.png",
+        "title": "UtilityLink",
+        "tags": [
+          "content",
+          "utilitylink"
+        ],
+        "component": "UtilityLink",
+        "category": "Content",
+        "variant": null,
+        "state": null
+      }
+    ],
+    "Other": [
+      {
+        "file": "ContentView_0.1.png",
+        "title": "ContentView",
+        "tags": [
+          "contentview",
+          "other"
+        ],
+        "component": "ContentView",
+        "category": "Other",
+        "variant": null,
+        "state": null
+      }
+    ]
+  }
 }
